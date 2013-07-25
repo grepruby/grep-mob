@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/uname"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:background="#ffffff"
+            android:inputType="textEmailAddress"
+            android:hint="New Username"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:background="#ffffff"
+            android:inputType="textEmailAddress"
+            android:hint="@string/login"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:background="#ffffff"
+            android:inputType="textPassword"
+            android:hint="@string/pwd"
+            android:textColor="@android:color/black" >
+            </EditText>
+            <EditText
+            android:id="@+id/c_password"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:background="#ffffff"
+            android:inputType="textPassword"
+            android:hint="Confirm Password"
+            android:textColor="@android:color/black" >
+        	</EditText>
+
+            <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:background="#ffffff"
+            android:inputType="phone" 
+            android:hint="Mobile Phone Number"
+            android:textColor="@android:color/black">
+            </EditText>
+       
+         <TableLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginTop="30dp" >
+             <TableRow
+                 android:id="@+id/tableRow1"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content" >
+                 <Button
+                     android:id="@+id/submit"
+                     android:layout_width="130dp"
+                     android:layout_height="50dp"
+                     android:layout_marginLeft="10dp"
+                     android:layout_marginRight="10dp"
+                     android:text="Sign up" />
+
+                 <Button
+                     android:id="@+id/cancel"
+                     android:layout_width="130dp"
+                     android:layout_height="50dp"
+                     android:layout_marginLeft="10dp"
+                     android:layout_marginRight="10dp"
+                     android:text="Cancel" />
+                 
+             </TableRow>
+       
+    </TableLayout>
+
+       
+    </LinearLayout>
+
+   
+
+</RelativeLayout>
