@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GrepRuby Leave App</string>
-    <string name="action_settings">Settings</string>
-    <string name="forgot">Forgot?</string>
-     <string name="login">Log in</string>
-     <string name="pwd">Password</string>
-    
+    	<string name="app_name">Grep Ruby Leave App</string>
+    	<string name="action_settings">Settings</string>
+    	<string name="forgot">Forgot Password?</string>
+     	<string name="login">Log in</string>
+     	<string name="pwd">Password</string>
+     	<string name="select">Choose Leave type</string>
+    	<string-array name="leave_array">
+	        <item>Full Day</item>
+	        <item>Half Day</item>
+	    </string-array>
 
 </resources>

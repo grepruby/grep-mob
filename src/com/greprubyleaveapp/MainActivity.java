@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
 
 public class MainActivity extends TabActivity implements OnTabChangeListener {
 	
@@ -43,13 +44,16 @@ public class MainActivity extends TabActivity implements OnTabChangeListener {
         
         for(int i=0;i<tabHost.getTabWidget().getChildCount();i++)
         {
-        	tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#8B8D8B"));
+        	   tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#2690BA"));
+        	   TextView textView = (TextView) getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+        	   textView.setTextColor(Color.BLACK);
+        	   textView.setTextSize(17);
         	
         	
         }
         
         tabHost.getTabWidget().setCurrentTab(1);
-        tabHost.getTabWidget().getChildAt(1).setBackgroundColor(Color.parseColor("#494849"));
+        tabHost.getTabWidget().getChildAt(1).setBackgroundColor(Color.parseColor("#EAEAEA"));
         
     }
 
@@ -60,10 +64,10 @@ public class MainActivity extends TabActivity implements OnTabChangeListener {
 		// TODO Auto-generated method stub
 		for(int i=0;i<tabHost.getTabWidget().getChildCount();i++)
         {
-        	tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#494849"));
+        	tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#EAEAEA"));
         } 
 				
-		tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#8B8D8B"));
+		tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#2690BA"));
 	}
     
     

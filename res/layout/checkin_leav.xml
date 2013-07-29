@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout 
+        android:layout_width="fill_parent"
+	     android:layout_height="wrap_content"
+	     android:orientation="vertical"
+	      >
+		    <RelativeLayout 
+		         android:layout_width="fill_parent"
+			     android:layout_height="50dp" 
+			     android:background="#EAEAEA">
+			     <TableLayout 
+			         android:layout_width="fill_parent"
+	     			 android:layout_height="wrap_content"
+	     			 android:layout_marginTop="5dp">
+			         <TableRow>
+			             <TextView 
+			                 android:layout_width="fill_parent"
+                     		 android:layout_height="wrap_content"
+                     		 android:textColor="@android:color/black" 
+                     		 android:layout_marginLeft="10dp"
+                     		 android:layout_marginTop="5dp"
+                     		 android:textSize="15sp"
+                     		 android:text="Leave Date"/>
+			              <TextView 
+			                 android:layout_width="fill_parent"
+                     		 android:layout_height="wrap_content"
+                     		 android:layout_marginLeft="50dp"
+                     		 android:layout_marginTop="5dp"
+                     		 android:textSize="15sp"
+                     		 android:textColor="@android:color/black" 
+                     		 android:text="No. of days"/>
+			             <ImageView
+			                  android:layout_height="40dp"
+			                  android:layout_width="100dp" 
+			                  android:layout_marginLeft="33dp"
+						      android:id="@+id/back"  
+							  android:src="@drawable/back"
+							  >
+			      		</ImageView>
+			         </TableRow>
+			     </TableLayout>
+			    </RelativeLayout>
+		     <LinearLayout 
+		         android:layout_width="fill_parent"
+			     android:layout_height="wrap_content"
+			     android:orientation="vertical" >
+			     <ListView
+		        android:id="@android:id/list"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"/>
+		     </LinearLayout>
+	 </LinearLayout>
+</FrameLayout>

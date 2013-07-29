@@ -46,8 +46,8 @@
                  android:layout_width="fill_parent"
                  android:layout_height="wrap_content" >
                  <Button
-                     android:id="@+id/submit"
-                     android:layout_width="200dp"
+                     android:id="@+id/login"
+                     android:layout_width="110dp"
                      android:layout_height="50dp"
                      android:layout_marginLeft="10dp"
                      android:layout_marginRight="10dp"
@@ -58,7 +58,7 @@
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
                      android:text="@string/forgot"
-                     android:textSize="20sp"
+                     android:textSize="17sp"
                      android:layout_marginLeft="10dp"
                      android:autoLink="web"
                      android:textColor="@android:color/white" />
