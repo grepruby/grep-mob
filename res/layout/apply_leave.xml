@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background" >
+    android:background="@color/black" >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -29,6 +29,7 @@
                     android:textSize="17sp" />
 
                 <TextView
+                     android:id="@+id/name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -61,7 +62,7 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/tableRow2"
+                android:id="@+id/tableRow3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp" >
@@ -121,7 +122,7 @@
             android:layout_marginTop="10dp" >
             
              <TableRow
-                android:id="@+id/tableRow2"
+                android:id="@+id/tableRow4"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" >
                 
@@ -133,33 +134,33 @@
                     android:layout_marginLeft="10dp"
                     android:text="Leave type" />
              <RadioGroup
-	            android:id="@+id/radioGroup1"
+	            android:id="@+id/radioGroup"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	             android:layout_marginLeft="10dp">
 
 	            <RadioButton
-	                android:id="@+id/radio0"
+	                android:id="@+id/full_day"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:checked="true"
 	                android:text="Full day" />
 	
 	            <RadioButton
-	                android:id="@+id/radio1"
+	                android:id="@+id/f_half_day"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:text="Half day(10am-3pm)" />
 	            
 	            <RadioButton
-	                android:id="@+id/radio2"
+	                android:id="@+id/s_half_day"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:text="Half day(3pm-7pm)" />
 	         </RadioGroup>
 		</TableRow>
             <TableRow
-                android:id="@+id/tableRow2"
+                android:id="@+id/tableRow5"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp" >
@@ -175,7 +176,7 @@
                 <EditText
                     android:id="@+id/reason"
                     android:layout_width="225dp"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:background="#ffffff"
                     android:hint=" Reason "
@@ -195,7 +196,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
             <Button
-                android:id="@+id/Button01"
+                android:id="@+id/submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

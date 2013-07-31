@@ -31,7 +31,6 @@ public class CheckinLeav extends ListActivity
 	private static final String TAG_STATUS = "status";
 	
 	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -94,11 +93,8 @@ public class CheckinLeav extends ListActivity
 						in.putExtra(TAG_DAYS, cost);
 						
 						startActivity(in);
-
 					}
 				});
 				
-
-		
 	}
 }
