@@ -15,42 +15,63 @@ public class LeaveDetail  extends Activity {
 	
 	
 	ImageView back;
+	private String apiToken;
+	private String uName;
 	
 	// JSON node keys
-	private static final String TAG_Date = "date";
-	private static final String TAG_DAYS = "days";
+	private static final String LEAVE_FROM = "leave_from";
+	private static final String LEAVE_TO = "to";
+	private static final String LEAVE_TYPE = "leave_type";
+	private static final String REASON = "reason";
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.leave_detail);
         
+        // getting intent data
+        Intent in = getIntent();
+        
+        // Get JSON values from previous intent
+        String leave_frm = in.getStringExtra(LEAVE_FROM);
+        String leave_to = in.getStringExtra(LEAVE_TO);
+        String leave_type = in.getStringExtra(LEAVE_TYPE);
+        String reason = in.getStringExtra(REASON);
+        uName  = in.getStringExtra("uName");
+        apiToken  = in.getStringExtra("apiToken");
+        
+        // Displaying all values on the screen
+        TextView txtName = (TextView) findViewById(R.id.name_id);
+        //TextView txtDateFrom = (TextView) findViewById(R.id.date_from_id);
+        //TextView txtDateTo = (TextView) findViewById(R.id.date_to_id);
+        TextView txtLeaveType = (TextView) findViewById(R.id.leave_type_id);
+        TextView txtReason = (TextView) findViewById(R.id.reason_id);
+        
+        
+        
+        txtName.setText(uName);
+        //txtDateFrom.setText(leave_frm);
+       // txtDateTo.setText(leave_to);
+        txtLeaveType.setText(leave_type);
+        txtReason.setText(reason);
+        
+        
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	
+            	Bundle pb = new Bundle();
+            	pb.putString("uName", uName);
+            	pb.putString("apiToken", apiToken);
+            	
             	Intent i = new Intent(view.getContext(), CheckinLeav.class); 	
+            	i.putExtras(pb);
 	        	startActivity(i);
 	        	finish();
 	        	
             }
            });
         
-        // getting intent data
-        Intent in = getIntent();
-        
-        // Get JSON values from previous intent
-        String name = in.getStringExtra(TAG_Date);
-        String cost = in.getStringExtra(TAG_DAYS);
        
-        
-        // Displaying all values on the screen
-        TextView lblName = (TextView) findViewById(R.id.name_label);
-        TextView lblCost = (TextView) findViewById(R.id.email_label);
-        
-        
-        lblName.setText(name);
-        lblCost.setText(cost);
-        
     }
 }

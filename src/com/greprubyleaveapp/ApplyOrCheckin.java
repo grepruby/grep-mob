@@ -43,7 +43,12 @@ public class ApplyOrCheckin extends Activity
 		checkin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	
+            	Bundle pb = new Bundle();
+            	pb.putString("uName", uName);
+            	pb.putString("apiToken", apiToken);
+            	
             	Intent i = new Intent(view.getContext(), CheckinLeav.class); 	
+            	i.putExtras(pb);
 	        	startActivity(i);
 	        	finish();
 	        	

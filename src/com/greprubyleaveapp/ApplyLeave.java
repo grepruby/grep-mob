@@ -199,13 +199,14 @@ public class ApplyLeave extends Activity
 
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("api_token", apiToken));
 			params.add(new BasicNameValuePair("leave[name]", uName));
 			params.add(new BasicNameValuePair("leave[applied_date]", curDate));
 			params.add(new BasicNameValuePair("leave[leave_from]", leaveFrom));
 			params.add(new BasicNameValuePair("leave[to]", leaveUntill));
 			params.add(new BasicNameValuePair("leave[reason]", leaveReason));
 			params.add(new BasicNameValuePair("leave[leave_type]", leaveType));
-
+			
 			// getting JSON Object
 			// Note that create product url accepts POST method
 			JSONObject json = jsonParser.makeHttpRequest(url_apply_leave,"POST", params);

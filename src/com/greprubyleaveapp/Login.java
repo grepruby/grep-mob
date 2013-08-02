@@ -2,19 +2,24 @@ package com.greprubyleaveapp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,12 +31,16 @@ public class Login extends Activity
 {
 	
 	Button loginButton;
-	TextView forgot,wrongInfo;
+	TextView forgot,wrongEmail,wrongPassword;
 	EditText email,password;
 	
 	String userEmail ;
 	String userPassword;
 	String success;
+	int token=0;
+	
+	// Progress Dialog
+	private ProgressDialog pDialog;
 	
 	private static final String TAG = "Login";
     private static final int DLG_EXAMPLE1 = 0;
@@ -57,7 +66,8 @@ public class Login extends Activity
 		email=(EditText)findViewById(R.id.email);
 		password=(EditText)findViewById(R.id.password);
 		forgot=(TextView)findViewById(R.id.forgot);
-		wrongInfo=(TextView)findViewById(R.id.wrong_info);
+		wrongEmail=(TextView)findViewById(R.id.wrong_email);
+		wrongPassword=(TextView)findViewById(R.id.wrong_password);
 				
 		
 		loginButton.setOnClickListener(new View.OnClickListener() {
@@ -66,14 +76,37 @@ public class Login extends Activity
         		userEmail = email.getText().toString();
     			userPassword = password.getText().toString();
     			
-    			if(userEmail.equals("") || userPassword.equals("")){
-    				//alertDilog();
-    				wrongInfo.setText("The username or password you entered is incorrect.");
-    			}else{
+    			if(userEmail.equals("")){
     				
-    				// signup in background thread
-    				new SigninData().execute();
-    			}
+    				wrongEmail.setText("Enter your email address.");
+    				
+    				}else if(userPassword.equals("")){
+    				
+    					wrongPassword.setText("Enter your password.");
+    					wrongEmail.setText("");
+    					
+    					  }else{
+    						  
+    						  new SigninData().execute();
+    						  
+    						/*  final Handler handler = new Handler(); 
+    						    Timer t = new Timer(); 
+    						    t.schedule(new TimerTask() { 
+    						            public void run() { 
+    						                    handler.post(new Runnable() { 
+    						                            public void run() { 
+    						                                
+    						                            	//alertDilog();
+    						                            	wrongEmail.setText("");
+    						                            	wrongPassword.setText("");
+    						                            	wrongPassword.setText("The username or password you entered is incorrect.");
+    						                            	
+    						                            } 
+    						                    }); 
+    						            } 
+    						    }, 6000); 
+    						  */
+    					  }
         	  
 				
             }
@@ -173,17 +206,24 @@ public class Login extends Activity
 	 * */
 	class SigninData extends AsyncTask<String, String, String> {
 
-		
-
+		/**
+		 * Before starting background thread Show Progress Dialog
+		 * */
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(Login.this);
+			pDialog.setMessage("Please wait...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
+			
 		/**
 		 * Creating product
 		 * */
 		@SuppressWarnings("deprecation")
 		protected String doInBackground(String... args) {
-			
-			
-		
-
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			
@@ -201,8 +241,9 @@ public class Login extends Activity
 			// check for success tag
 			try {
 				success = json.getString(TAG_SUCCESS);
-				
+				pDialog.dismiss();
 				if (success.equals("true")) {
+					token=1;
 					String apiToken = json.getString(TOKEN);
 					String uName = json.getString(NAME);
 					Bundle bundle = new Bundle();
@@ -212,15 +253,13 @@ public class Login extends Activity
 					Intent i = new Intent(getApplicationContext(), ApplyOrCheckin.class);
 					i.putExtras(bundle);
 					startActivity(i);
-					
 					// closing this screen
-					
 					finish();
 				} else {
 					// failed to signup
 					//alertDilog();
-					
-					System.out.println("------"+success+"-------");
+					//token=0;
+					//System.out.println("------"+success+"-------");
 					
 				}
 			} catch (JSONException e) {
@@ -230,9 +269,12 @@ public class Login extends Activity
 			return null;
 		}
 
-	
-		
-
+		@Override
+		protected void onPostExecute(String result) {
+			if(token==0){
+				alertDilog();
+			}
+		}
 	}
 	
 			@SuppressWarnings("deprecation")
@@ -240,7 +282,7 @@ public class Login extends Activity
 				
 				AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
 				alertDialog.setTitle("Log in");
-				alertDialog.setMessage("Blank user name or password");
+				alertDialog.setMessage("The username or password you entered is incorrect.");
 				alertDialog.setIcon(R.drawable.logo);
 				
 				alertDialog.setButton("OK", new DialogInterface.OnClickListener() {

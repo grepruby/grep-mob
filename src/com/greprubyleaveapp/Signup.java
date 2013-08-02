@@ -10,10 +10,13 @@ import org.json.JSONObject;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +35,7 @@ public class Signup extends Activity
 	
 	private static final String TAG_SUCCESS = "success";
 	
+	int token=0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -112,8 +116,7 @@ public class Signup extends Activity
 			JSONObject json = jsonParser.makeHttpRequest(url_signup,"POST", params);
 			
 			// check log cat fro response
-			Log.d("Create Response", json.toString());
-
+			//Log.d("Create Response", json.toString());/
 			// check for success tag
 			try {
 				String success = json.getString(TAG_SUCCESS);
@@ -121,21 +124,16 @@ public class Signup extends Activity
 				
 				if (success.equals("true")) {
 					// successfully sign up
-					
-					
-					
-					Toast.makeText(getApplicationContext(), "Sign up successfully", Toast.LENGTH_LONG).show();
-					
-					
+					token=1;
 					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 					startActivity(i);
-					
-					// closing this screen
 					finish();
 				} else {
 					// failed to signup
+					//test();
+					//token=0;
+					//Toast.makeText(Signup.this, "faild to Sign up", Toast.LENGTH_SHORT).show();
 					
-					Toast.makeText(getApplicationContext(), "faild to Sign up", Toast.LENGTH_LONG).show();
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -143,8 +141,32 @@ public class Signup extends Activity
 
 			return null;
 		}
-
+		@Override
+		protected void onPostExecute(String result) {
+			if(token==0){
+				alertDilog();
+			}
+		}
 		
-
 	}
+	@SuppressWarnings("deprecation")
+	void alertDilog(){
+		
+		AlertDialog alertDialog = new AlertDialog.Builder(Signup.this).create();
+		alertDialog.setTitle("Sign up");
+		alertDialog.setMessage("Please fill the correct information.");
+		alertDialog.setIcon(R.drawable.logo);
+		
+		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            // Write your code here to execute after dialog closed
+            //Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+            }
+    });
+
+    // Showing Alert Message
+    alertDialog.show();
+
+}
+
 }

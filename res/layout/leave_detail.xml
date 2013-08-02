@@ -13,26 +13,90 @@
 			         android:layout_width="fill_parent"
 				     android:layout_height="50dp" 
 				     android:background="#EAEAEA">
-				             <ImageView
-				                  android:layout_height="40dp"
-				                  android:layout_width="60dp" 
-							      android:id="@+id/back"  
-								  android:src="@drawable/back" >
-				      		</ImageView>
+				     <ImageView
+				           android:layout_height="40dp"
+				           android:layout_width="60dp" 
+						   android:id="@+id/back"  
+						   android:src="@drawable/back" >
+				     </ImageView>
 	  </RelativeLayout>
 	  <!-- Name Label -->
-	  <TextView android:id="@+id/name_label"
+	   <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp" >
+
+       <TableRow>
+	   <TextView
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:text="Name : "
+                     android:textSize="15sp"
+                     android:layout_marginLeft="10dp"
+                     android:textColor="@color/white" />
+	  <TextView android:id="@+id/name_id"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:textSize="15sp"
 	            android:textStyle="bold"
-	            android:paddingTop="10dip"
-	            android:paddingBottom="10dip"
-	            android:textColor="#43bd00"/>
-	  <!-- Description Label -->
-	  <TextView android:id="@+id/email_label"
+	            android:text=""
+	            android:layout_marginLeft="20dp"
+	            android:textColor="@color/white"/>
+	  </TableRow>
+	  <!-- 
+	  <TextView android:id="@+id/date_from_id"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:textColor="#acacac"/>
+	   <TextView android:id="@+id/date_to_id"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:textColor="#acacac"/>
+	            -->
+	     <TableRow
+	         	android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+	         >       
+	      <TextView
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:text="Leave Type : "
+                     android:textSize="15sp"
+                     android:layout_marginLeft="10dp"
+                     android:textStyle="bold"
+                     android:textColor="@color/white" />
+	     <TextView android:id="@+id/leave_type_id"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="20dp"
+	            android:textSize="15sp"
+	            android:text=""
+	            android:textStyle="bold"
+	           android:textColor="@color/white"/>
+	    </TableRow>
+	     <TableRow
+	         	android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">       
+	      <TextView
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:text="Reason : "
+                     android:textSize="15sp"
+                     android:textStyle="bold"
+                     android:layout_marginLeft="10dp"
+                     android:textColor="@color/white" />
+	    <TextView android:id="@+id/reason_id"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:textSize="15sp"
+	            android:layout_marginLeft="20dp"
+	            android:text=""
+	            android:textStyle="bold"
+	            android:textColor="@color/white"/>
+	    </TableRow>
+	    </TableLayout>
   </LinearLayout>
 </FrameLayout>
