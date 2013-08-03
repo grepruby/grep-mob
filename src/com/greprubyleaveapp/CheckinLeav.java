@@ -18,6 +18,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,6 +55,7 @@ public class CheckinLeav extends ListActivity
 	private static final String LEAVE_TYPE = "leave_type";
 	private static final String REASON = "reason";
 	private static final String TOTAL_LEAVES="total_leaves";
+	private static final String STATUS="status";
 	
 	
 	
@@ -61,6 +63,7 @@ public class CheckinLeav extends ListActivity
 	
 	private String apiToken;
 	private String uName;
+	private String lvStatus;
 	
 	// Progress Dialog
 	private ProgressDialog pDialog;
@@ -93,7 +96,7 @@ public class CheckinLeav extends ListActivity
            });
 		
 	
-		Toast.makeText(getApplicationContext(), "tokan="+apiToken, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(getApplicationContext(), "tokan="+apiToken, Toast.LENGTH_SHORT).show();
 		
 	}
 	
@@ -162,6 +165,7 @@ public class CheckinLeav extends ListActivity
 					String leave_to = c.getString(LEAVE_TO);
 					String leave_type = c.getString(LEAVE_TYPE);
 					String reason = c.getString(REASON);
+					lvStatus = c.getString(STATUS);
 					
 					
 					
@@ -203,12 +207,24 @@ public class CheckinLeav extends ListActivity
 
 					  long diff = (toDay.getTimeInMillis() - frmDay.getTimeInMillis()); 
 					  
-					  diff=(diff/100000000)+2;
+					  if(diff==0){
+						  
+						  diff=(diff/100000000)+1;
+						  
+					  }else{
+						  
+						  diff=(diff/100000000)+2;
+					  
+					  }
+					  
+					  
 					  
 					  String noOfLeave= String.valueOf(diff);
 					  
-					  System.out.println("--------no. of days"+diff);
-					  System.out.println("--------no. of days"+noOfLeave);
+					 if(leave_type.equals("Half day(10am-3pm)") || leave_type.equals("Half day(3pm-7pm)")){
+						
+						 noOfLeave="1/2";
+					 }
 					
 					// creating new HashMap
 					HashMap<String, String> map = new HashMap<String, String>();
@@ -222,8 +238,10 @@ public class CheckinLeav extends ListActivity
 					map.put(LEAVE_TYPE,leave_type);
 					map.put(REASON,reason);
 					map.put(TOTAL_LEAVES, noOfLeave);
+					map.put(STATUS, lvStatus);
 
 					// adding HashList to ArrayList
+					
 					contactList.add(map);
 					
 					
@@ -252,7 +270,7 @@ public class CheckinLeav extends ListActivity
 					 * Updating parsed JSON data into ListView
 					 * */
 					ListAdapter adapter = new SimpleAdapter(CheckinLeav.this, contactList,	R.layout.list_item, new String[] { LEAVE_FROM,
-							TOTAL_LEAVES,LEAVE_TYPE,REASON},new int[] { R.id.start_date_id, R.id.no_of_days,R.id.leave_type,R.id.reason });
+							TOTAL_LEAVES,LEAVE_TYPE,REASON,STATUS},new int[] { R.id.start_date_id, R.id.no_of_days,R.id.leave_type,R.id.reason,R.id.status });
 					// updating listview
 					setListAdapter(adapter);
 					
@@ -260,18 +278,31 @@ public class CheckinLeav extends ListActivity
 					
 					// selecting single ListView item
 							ListView lv = getListView();
+							
+							
+							if(lvStatus.equals("pending")){
+								lv.setBackgroundColor(Color.BLUE);
+							}
+						    if(lvStatus.equals("approved")){
+						    	
+								lv.setBackgroundColor(Color.GREEN);
+							}
+						    if(lvStatus.equals("not approved")){
+						    	
+								lv.setBackgroundColor(Color.RED);
+							}
 
 							// Launching new screen on Selecting Single ListItem
 							lv.setOnItemClickListener(new OnItemClickListener() {
 
 								@Override
-								public void onItemClick(AdapterView<?> parent, View view,
-										int position, long id) {
+								public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 									// getting values from selected ListItem
 									String from = ((TextView) view.findViewById(R.id.start_date_id)).getText().toString();
 									String to = ((TextView) view.findViewById(R.id.no_of_days)).getText().toString();
 									String leave_type = ((TextView) view.findViewById(R.id.leave_type)).getText().toString();
 									String reason = ((TextView) view.findViewById(R.id.reason)).getText().toString();
+									String status = ((TextView) view.findViewById(R.id.status)).getText().toString();
 									
 									
 									// Starting new intent
@@ -280,6 +311,7 @@ public class CheckinLeav extends ListActivity
 									in.putExtra(LEAVE_TO, to);
 									in.putExtra(LEAVE_TYPE, leave_type);
 									in.putExtra(REASON, reason);
+									in.putExtra(STATUS, status);
 									
 									in.putExtra("uName", uName);
 									in.putExtra("apiToken", apiToken);

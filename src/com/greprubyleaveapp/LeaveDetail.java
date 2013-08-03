@@ -23,6 +23,7 @@ public class LeaveDetail  extends Activity {
 	private static final String LEAVE_TO = "to";
 	private static final String LEAVE_TYPE = "leave_type";
 	private static final String REASON = "reason";
+	private static final String STATUS = "status";
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class LeaveDetail  extends Activity {
         String leave_to = in.getStringExtra(LEAVE_TO);
         String leave_type = in.getStringExtra(LEAVE_TYPE);
         String reason = in.getStringExtra(REASON);
+        String status = in.getStringExtra(STATUS);
         uName  = in.getStringExtra("uName");
         apiToken  = in.getStringExtra("apiToken");
         
@@ -46,6 +48,7 @@ public class LeaveDetail  extends Activity {
         //TextView txtDateTo = (TextView) findViewById(R.id.date_to_id);
         TextView txtLeaveType = (TextView) findViewById(R.id.leave_type_id);
         TextView txtReason = (TextView) findViewById(R.id.reason_id);
+        TextView txtStatus = (TextView) findViewById(R.id.status_id);
         
         
         
@@ -54,6 +57,9 @@ public class LeaveDetail  extends Activity {
        // txtDateTo.setText(leave_to);
         txtLeaveType.setText(leave_type);
         txtReason.setText(reason);
+        txtStatus.setText(status);
+        
+        
         
         
         back=(ImageView)findViewById(R.id.back);

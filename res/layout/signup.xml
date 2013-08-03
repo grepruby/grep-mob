@@ -20,7 +20,19 @@
             android:background="#ffffff"
             android:inputType="textEmailAddress"
             android:hint="New Username(min 6 characters)"
-            android:textColor="@android:color/black" />
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textColor="@android:color/black" >
+            <requestFocus></requestFocus></EditText>
+            
+        	<TextView
+             android:id="@+id/wrong_uname"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text=""
+             android:textSize="14sp"
+             android:layout_marginTop="2dp"
+             android:layout_marginLeft="10dp"
+             android:textColor="#DD4B46" />
 
         	<EditText
             android:id="@+id/email"
@@ -28,11 +40,21 @@
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:background="#ffffff"
             android:inputType="textEmailAddress"
             android:hint="Email"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:textColor="@android:color/black" />
+        	<TextView
+             android:id="@+id/wrong_email"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text=""
+             android:textSize="14sp"
+             android:layout_marginTop="2dp"
+             android:layout_marginLeft="10dp"
+             android:textColor="#DD4B46" />
 
         	<EditText
             android:id="@+id/password"
@@ -40,36 +62,69 @@
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:background="#ffffff"
             android:inputType="textPassword"
             android:hint="Password(min 8 alphanumerics)"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:textColor="@android:color/black" >
             </EditText>
+            <TextView
+             android:id="@+id/wrong_password"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text=""
+             android:textSize="14sp"
+             android:layout_marginTop="2dp"
+             android:layout_marginLeft="10dp"
+             android:textColor="#DD4B46" />
+            
             <EditText
             android:id="@+id/c_password"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:background="#ffffff"
             android:inputType="textPassword"
             android:hint="Confirm Password"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:textColor="@android:color/black" >
         	</EditText>
+        	<TextView
+             android:id="@+id/wrong_cpassword"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text=""
+             android:textSize="14sp"
+             android:layout_marginTop="2dp"
+             android:layout_marginLeft="10dp"
+             android:textColor="#DD4B46" />
+        	
             <EditText
             android:id="@+id/mobile"   
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:background="#ffffff"
             android:inputType="phone" 
             android:hint="Mobile Phone Number"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:imeOptions="actionDone"
             android:textColor="@android:color/black">
             </EditText>
+            <TextView
+             android:id="@+id/wrong_mobile"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text=""
+             android:textSize="14sp"
+             android:layout_marginTop="2dp"
+             android:layout_marginLeft="10dp"
+             android:textColor="#DD4B46" />
     </LinearLayout>
 
 	   <RelativeLayout 

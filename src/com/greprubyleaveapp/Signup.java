@@ -26,14 +26,17 @@ import android.widget.Toast;
 
 public class Signup extends Activity
 {
-	EditText uname,email,password,c_password,mobile;
-	Button submit,reset;
+	private EditText uname,email,password,c_password,mobile;
+	private Button submit,reset;
 	
 	JSONParser jsonParser = new JSONParser();
 	
 	private static String url_signup = "http://grep-ruby-leave-app.herokuapp.com/api/v1/registration";
 	
 	private static final String TAG_SUCCESS = "success";
+	private static final String TAG_ERRORS = "errors";
+	private String server_error;
+	private TextView wrongUname,wrongEmail,wrongPassword,wrongCpassword,wrongMobile;
 	
 	int token=0;
 	
@@ -42,7 +45,6 @@ public class Signup extends Activity
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.signup);
-
 		uname=(EditText)findViewById(R.id.uname);
 		email=(EditText)findViewById(R.id.email);
 		password=(EditText)findViewById(R.id.password);
@@ -50,7 +52,11 @@ public class Signup extends Activity
 		mobile=(EditText)findViewById(R.id.mobile);
 		submit=(Button)findViewById(R.id.submit);
 		reset=(Button)findViewById(R.id.reset);
-		
+		wrongUname=(TextView)findViewById(R.id.wrong_uname);
+		wrongEmail=(TextView)findViewById(R.id.wrong_email);
+		wrongPassword=(TextView)findViewById(R.id.wrong_password);
+		wrongCpassword=(TextView)findViewById(R.id.wrong_cpassword);
+		wrongMobile=(TextView)findViewById(R.id.wrong_mobile);
 		
 		// button click event
 		submit.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +64,41 @@ public class Signup extends Activity
 					@Override
 					public void onClick(View view) {
 						// signup in background thread
-						new SignupData().execute();
+						 int token=0;
+						if(uname.getText().toString().equals("") || uname.getText().toString().length()<6){
+							wrongUname.setText("User name must be at least 6 characters.");
+							token=1;
+						}else{
+							wrongUname.setText("");
+						}
+						if(email.getText().toString().equals("")){
+							token=1;
+							wrongEmail.setText("You can't leave this empty.");
+						}else{
+							wrongEmail.setText("");
+						}
+						if(password.getText().toString().equals("")){
+							token=1;
+							wrongPassword.setText("You can't leave this empty.");
+						}else{
+							wrongPassword.setText("");
+						}
+						if(c_password.getText().toString().equals("") || !c_password.getText().toString().equals(password.getText().toString())){
+							token=1;
+							wrongCpassword.setText("Confirm your password here.");
+						}else{
+							wrongCpassword.setText("");
+						}
+						if(mobile.getText().toString().equals("") || mobile.getText().toString().length()<10){
+							token=1;
+							wrongMobile.setText("Mobile no. must be 10 digit.");
+						}else{
+							wrongMobile.setText("");
+						}
+						if(token==0){
+							new SignupData().execute();
+						}
+						
 					}
 		});
 		
@@ -129,6 +169,8 @@ public class Signup extends Activity
 					startActivity(i);
 					finish();
 				} else {
+					
+					server_error = json.getString(TAG_ERRORS);
 					// failed to signup
 					//test();
 					//token=0;
@@ -144,17 +186,26 @@ public class Signup extends Activity
 		@Override
 		protected void onPostExecute(String result) {
 			if(token==0){
-				alertDilog();
+				server_error = server_error.replace("[", "");
+				server_error = server_error.replace("]", "");
+				server_error = server_error.replace("{", "");
+				server_error = server_error.replace("}", "");
+				server_error = server_error.replace(":", " ");
+				server_error = server_error.replace("\"", "");
+				alertDilog(server_error);
+				System.out.println(server_error);
 			}
+			
+			
 		}
 		
 	}
 	@SuppressWarnings("deprecation")
-	void alertDilog(){
+	void alertDilog(String msg){
 		
 		AlertDialog alertDialog = new AlertDialog.Builder(Signup.this).create();
 		alertDialog.setTitle("Sign up");
-		alertDialog.setMessage("Please fill the correct information.");
+		alertDialog.setMessage(msg);
 		alertDialog.setIcon(R.drawable.logo);
 		
 		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {

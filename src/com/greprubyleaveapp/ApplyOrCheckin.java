@@ -22,7 +22,7 @@ public class ApplyOrCheckin extends Activity
 		final String uName  = gb.getString("uName");
 		
 		//String answer = String.valueOf(apiToken);
-    	Toast.makeText(getApplicationContext(), uName, Toast.LENGTH_LONG).show();
+    	//Toast.makeText(getApplicationContext(), uName, Toast.LENGTH_LONG).show();
 		
 		apply=(Button)findViewById(R.id.apply);
 		apply.setOnClickListener(new View.OnClickListener() {

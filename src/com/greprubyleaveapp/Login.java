@@ -2,8 +2,17 @@ package com.greprubyleaveapp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -37,6 +46,7 @@ public class Login extends Activity
 	String userEmail ;
 	String userPassword;
 	String success;
+	String forgotPassword;
 	int token=0;
 	
 	// Progress Dialog
@@ -51,6 +61,8 @@ public class Login extends Activity
     JSONParser jsonParser = new JSONParser();
     
     private static String url_signin = "http://grep-ruby-leave-app.herokuapp.com/api/v1/session";
+    
+    private static String url_forgot = "http://grep-ruby-leave-app.herokuapp.com/api/v1/session";
     
     private static final String TAG_SUCCESS = "success";
     private static final String TOKEN="api_token";
@@ -181,8 +193,8 @@ public class Login extends Activity
  
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
-                String value = input.getText().toString();
-                Log.d(TAG, "User name: " + value);
+            	forgotPassword = input.getText().toString();
+                Log.d(TAG, "User name: " + forgot);
                 return;
             }
         });
@@ -256,6 +268,73 @@ public class Login extends Activity
 					// closing this screen
 					finish();
 				} else {
+					// failed to signup
+					//alertDilog();
+					//token=0;
+					//System.out.println("------"+success+"-------");
+					
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			if(token==0){
+				alertDilog();
+			}
+		}
+	}
+	
+	
+	
+	
+	/**
+	 * Background Async Task to Create new product
+	 * */
+	class SendEmail extends AsyncTask<String, String, String> {
+
+		
+			
+		/**
+		 * Creating product
+		 * */
+		@SuppressWarnings("deprecation")
+		protected String doInBackground(String... args) {
+			// Building Parameters
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			
+			params.add(new BasicNameValuePair("send[email]", forgotPassword));
+
+			// getting JSON Object
+			// Note that create product url accepts POST method
+			JSONObject json = jsonParser.makeHttpRequest(url_forgot,"POST", params);
+			
+			// check log cat fro response
+			Log.d("Create Response", json.toString());
+
+			// check for success tag
+			try {
+				success = json.getString(TAG_SUCCESS);
+				
+				if (success.equals("true")) {
+					
+					String apiToken = json.getString(TOKEN);
+					String uName = json.getString(NAME);
+					Bundle bundle = new Bundle();
+					bundle.putString("apiToken", apiToken);
+					bundle.putString("uName", uName);
+					// successfully created product
+					Intent i = new Intent(getApplicationContext(), ApplyOrCheckin.class);
+					i.putExtras(bundle);
+					startActivity(i);
+					// closing this screen
+					finish();
+				} else {
+					
 					// failed to signup
 					//alertDilog();
 					//token=0;

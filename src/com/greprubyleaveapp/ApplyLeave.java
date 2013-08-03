@@ -23,18 +23,18 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class ApplyLeave extends Activity
 {
 	
 	private Button cancel,leaveFromButton,leaveUntilButton,submit;
-	private TextView leaveFromTxt,leaveUntillTxt,currentDate,name;
+	private TextView leaveFromTxt,leaveUntillTxt,currentDate,name,toId,fromId;
 	private EditText reason;
 	private RadioGroup radioGroup;
-	private RadioButton radioButton;
+	private RadioButton radioButton,fullDay,fhalfDay,shalfDay;
 	
     JSONParser jsonParser = new JSONParser();
 	
@@ -53,9 +53,10 @@ public class ApplyLeave extends Activity
 	private String apiToken;
 	private String uName;
 	
+	private int selectedId;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.apply_leave);
 		
@@ -64,18 +65,47 @@ public class ApplyLeave extends Activity
 		leaveUntilButton=(Button)findViewById(R.id.until_btn);
 		leaveUntillTxt=(TextView)findViewById(R.id.until_txt);
 		currentDate=(TextView)findViewById(R.id.current_date);
+		toId=(TextView)findViewById(R.id.to_id);
+		fromId=(TextView)findViewById(R.id.from_id);
 		name=(TextView)findViewById(R.id.name);
 		reason=(EditText)findViewById(R.id.reason);
 		cancel=(Button)findViewById(R.id.cancel);
 		submit=(Button)findViewById(R.id.submit);
+		
+		
 		radioGroup=(RadioGroup) findViewById(R.id.radioGroup);
 		
 		
+		fullDay = (RadioButton)findViewById(R.id.full_day);
+		fhalfDay = (RadioButton)findViewById(R.id.f_half_day);
+		shalfDay = (RadioButton)findViewById(R.id.s_half_day);
 		
 		Bundle gb  = this.getIntent().getExtras();
 		apiToken = gb.getString("apiToken");
 		uName  = gb.getString("uName");
 		name.setText(uName);
+		
+		radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) { 
+            	
+            	if (checkedId == fullDay.getId()) { //do something
+            		//Toast.makeText(ApplyLeave.this,"full day", 2000).show();
+            		toId.setVisibility(View.VISIBLE);
+            		leaveUntilButton.setVisibility(View.VISIBLE);
+            		leaveUntillTxt.setVisibility(View.VISIBLE);
+            		fromId.setText("Leave From : ");
+                } 
+            	else{ // do other thing
+            		//Toast.makeText(ApplyLeave.this,"half day", 2000).show();
+            		toId.setVisibility(View.GONE);
+            		leaveUntilButton.setVisibility(View.GONE);
+            		leaveUntillTxt.setVisibility(View.GONE);
+            		fromId.setText("Leave On : ");
+                }
+                 
+            }
+		});
 		
 		submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -190,8 +220,7 @@ public class ApplyLeave extends Activity
 			String leaveUntill = leaveUntillTxt.getText().toString();
 			String leaveReason = reason.getText().toString();
 			
-			
-			int selectedId = radioGroup.getCheckedRadioButtonId();
+			selectedId = radioGroup.getCheckedRadioButtonId();
 			radioButton = (RadioButton) findViewById(selectedId);
 			
 			String leaveType = radioButton.getText().toString();
@@ -200,7 +229,7 @@ public class ApplyLeave extends Activity
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("api_token", apiToken));
-			params.add(new BasicNameValuePair("leave[name]", uName));
+			//params.add(new BasicNameValuePair("leave[name]", uName));
 			params.add(new BasicNameValuePair("leave[applied_date]", curDate));
 			params.add(new BasicNameValuePair("leave[leave_from]", leaveFrom));
 			params.add(new BasicNameValuePair("leave[to]", leaveUntill));

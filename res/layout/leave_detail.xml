@@ -97,6 +97,26 @@
 	            android:textStyle="bold"
 	            android:textColor="@color/white"/>
 	    </TableRow>
+	    <TableRow
+	         	android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">       
+	      <TextView
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:text="Status : "
+                     android:textSize="15sp"
+                     android:textStyle="bold"
+                     android:layout_marginLeft="10dp"
+                     android:textColor="@color/white" />
+	    <TextView android:id="@+id/status_id"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:textSize="15sp"
+	            android:layout_marginLeft="20dp"
+	            android:text=""
+	            android:textStyle="bold" />
+	    </TableRow>
 	    </TableLayout>
   </LinearLayout>
 </FrameLayout>

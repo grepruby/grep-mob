@@ -68,6 +68,7 @@
                 android:layout_marginTop="15dp" >
 
                 <TextView
+                     android:id="@+id/from_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -94,6 +95,7 @@
                 android:layout_marginTop="10dp" >
 
                 <TextView
+                    android:id="@+id/to_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -175,11 +177,14 @@
 
                 <EditText
                     android:id="@+id/reason"
-                    android:layout_width="225dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
                     android:background="#ffffff"
-                    android:hint=" Reason "
+                    android:hint=" Reason"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
+                    android:textCursorDrawable="@drawable/color_cursor"
                     android:textColor="@android:color/black" >
                 </EditText>
             </TableRow>
@@ -202,7 +207,6 @@
                 android:layout_weight="1"
                 android:text="Submit" >
             </Button>
-
             <Button
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"
@@ -210,8 +214,6 @@
                 android:layout_weight="1"
                 android:text="Cancel" >
             </Button>
-            
         </LinearLayout>
     </RelativeLayout>
-
 </FrameLayout>
