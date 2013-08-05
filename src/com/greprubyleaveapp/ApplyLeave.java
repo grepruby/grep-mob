@@ -4,12 +4,10 @@ package com.greprubyleaveapp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -38,10 +36,9 @@ public class ApplyLeave extends Activity
 	
     JSONParser jsonParser = new JSONParser();
 	
-	private static String url_apply_leave = "http://grep-ruby-leave-app.herokuapp.com/api/v1/leaves";
+	
 	
 	private static final String TAG_SUCCESS = "success";
-	
 	
 	
 	public static final int Date_dialog_id = 1;
@@ -135,6 +132,7 @@ public class ApplyLeave extends Activity
             	
             	DatePickerDialog DPD = new DatePickerDialog(ApplyLeave.this, mDateSetListenerFrom, mYear, mMonth,mDay);
                 DPD.show();
+                
             }
            });
 		   leaveUntilButton.setOnClickListener(new View.OnClickListener() {
@@ -225,7 +223,6 @@ public class ApplyLeave extends Activity
 			
 			String leaveType = radioButton.getText().toString();
 			
-
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("api_token", apiToken));
@@ -238,7 +235,7 @@ public class ApplyLeave extends Activity
 			
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(url_apply_leave,"POST", params);
+			JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_apply_leave,"POST", params);
 			
 			// check log cat fro response
 			Log.d("Create Response", json.toString());
@@ -274,11 +271,5 @@ public class ApplyLeave extends Activity
 			return null;
 		}
 
-		
-
 	}
-	
-	
-	
-
-}
+	}

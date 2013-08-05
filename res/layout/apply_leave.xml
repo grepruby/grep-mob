@@ -23,8 +23,8 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Name : "
+                    android:layout_marginLeft="50dp"
+                    android:text="Welcome"
                     android:textColor="@android:color/white"
                     android:textSize="17sp" />
 
@@ -32,7 +32,7 @@
                      android:id="@+id/name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:text="Zareen Khan"
                     android:textColor="@android:color/white"
                     android:textSize="17sp" />
@@ -50,6 +50,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="Date Applied : "
                     android:textColor="@android:color/white"
+                    android:visibility="gone"
                     android:textSize="17sp" />
 
                 <TextView
@@ -58,6 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text=""
+                    android:visibility="gone"
                     android:textColor="@android:color/white" />
             </TableRow>
 

@@ -8,6 +8,7 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
+@SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity implements OnTabChangeListener {
 	
 	TabHost tabHost;

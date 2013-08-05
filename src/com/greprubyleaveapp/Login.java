@@ -1,18 +1,8 @@
 package com.greprubyleaveapp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -20,12 +10,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,34 +35,32 @@ import android.widget.Toast;
 public class Login extends Activity
 {
 	
-	Button loginButton;
-	TextView forgot,wrongEmail,wrongPassword;
-	EditText email,password;
+	private Button loginButton;
+	private TextView forgot,wrongEmail,wrongPassword;
+	private EditText email,password;
 	
-	String userEmail ;
-	String userPassword;
-	String success;
-	String forgotPassword;
-	int token=0;
+	private String userEmail ;
+	private String userPassword;
+	private String success;
+	private String forgotPassword;
+	private String apiToken;
+	private int responseToken = 0;
 	
 	// Progress Dialog
 	private ProgressDialog pDialog;
-	
 	private static final String TAG = "Login";
     private static final int DLG_EXAMPLE1 = 0;
     private static final int TEXT_ID = 0;
-   
-    
     
     JSONParser jsonParser = new JSONParser();
     
-    private static String url_signin = "http://grep-ruby-leave-app.herokuapp.com/api/v1/session";
-    
-    private static String url_forgot = "http://grep-ruby-leave-app.herokuapp.com/api/v1/session";
+    private DataBaseHelper myDbHelper = null;
     
     private static final String TAG_SUCCESS = "success";
     private static final String TOKEN="api_token";
     private static final String NAME="name";
+    
+    LoginDataBaseAdapter loginDataBaseAdapter;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +74,10 @@ public class Login extends Activity
 		forgot=(TextView)findViewById(R.id.forgot);
 		wrongEmail=(TextView)findViewById(R.id.wrong_email);
 		wrongPassword=(TextView)findViewById(R.id.wrong_password);
+		
+	// get Instance  of Database Adapter
+		loginDataBaseAdapter=new LoginDataBaseAdapter(this);
+		loginDataBaseAdapter=loginDataBaseAdapter.open();
 				
 		
 		loginButton.setOnClickListener(new View.OnClickListener() {
@@ -100,24 +98,7 @@ public class Login extends Activity
     					  }else{
     						  
     						  new SigninData().execute();
-    						  
-    						/*  final Handler handler = new Handler(); 
-    						    Timer t = new Timer(); 
-    						    t.schedule(new TimerTask() { 
-    						            public void run() { 
-    						                    handler.post(new Runnable() { 
-    						                            public void run() { 
-    						                                
-    						                            	//alertDilog();
-    						                            	wrongEmail.setText("");
-    						                            	wrongPassword.setText("");
-    						                            	wrongPassword.setText("The username or password you entered is incorrect.");
-    						                            	
-    						                            } 
-    						                    }); 
-    						            } 
-    						    }, 6000); 
-    						  */
+    					
     					  }
         	  
 				
@@ -245,7 +226,7 @@ public class Login extends Activity
 
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(url_signin,"POST", params);
+			JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_signin,"POST", params);
 			
 			// check log cat fro response
 			Log.d("Create Response", json.toString());
@@ -255,7 +236,7 @@ public class Login extends Activity
 				success = json.getString(TAG_SUCCESS);
 				pDialog.dismiss();
 				if (success.equals("true")) {
-					token=1;
+					responseToken=1;
 					String apiToken = json.getString(TOKEN);
 					String uName = json.getString(NAME);
 					Bundle bundle = new Bundle();
@@ -283,10 +264,15 @@ public class Login extends Activity
 
 		@Override
 		protected void onPostExecute(String result) {
-			if(token==0){
+			if(responseToken==0){
 				alertDilog();
+			}else{
+				//Toast.makeText(getApplicationContext(), "Response found", Toast.LENGTH_SHORT).show();
+				setupDataBase();
 			}
 		}
+		
+		
 	}
 	
 	
@@ -311,7 +297,7 @@ public class Login extends Activity
 
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(url_forgot,"POST", params);
+			JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_forgot,"POST", params);
 			
 			// check log cat fro response
 			Log.d("Create Response", json.toString());
@@ -322,7 +308,7 @@ public class Login extends Activity
 				
 				if (success.equals("true")) {
 					
-					String apiToken = json.getString(TOKEN);
+					apiToken = json.getString(TOKEN);
 					String uName = json.getString(NAME);
 					Bundle bundle = new Bundle();
 					bundle.putString("apiToken", apiToken);
@@ -350,10 +336,15 @@ public class Login extends Activity
 
 		@Override
 		protected void onPostExecute(String result) {
-			if(token==0){
+			if(responseToken==0){
 				alertDilog();
+			}else{
+				//setupDataBase1();
+				
 			}
 		}
+		
+		
 	}
 	
 			@SuppressWarnings("deprecation")
@@ -375,6 +366,26 @@ public class Login extends Activity
 		    alertDialog.show();
 		
 	}
-	
+			
+			
+			
+	  private void setupDataBase(){
+		    	
+		  loginDataBaseAdapter.insertEntry(userEmail, userPassword);
+		        
+		        Toast.makeText(getApplicationContext(), userEmail, Toast.LENGTH_SHORT).show();
+		       
+		    }
+	  
+	  
+	  
+	  @Override
+		protected void onDestroy() {
+			// TODO Auto-generated method stub
+			super.onDestroy();
+			
+			loginDataBaseAdapter.close();
+		}
+	 
 	
 }

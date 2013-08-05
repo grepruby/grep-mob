@@ -2,10 +2,8 @@ package com.greprubyleaveapp;
 
 
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.http.NameValuePair;
@@ -13,25 +11,20 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.greprubyleaveapp.Login.SigninData;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
 
 
 public class CheckinLeav extends ListActivity
@@ -41,7 +34,6 @@ public class CheckinLeav extends ListActivity
 	
 	ArrayList<HashMap<String, String>> contactList = new ArrayList<HashMap<String, String>>();
     
-    private static String url_checkin = "http://grep-ruby-leave-app.herokuapp.com/api/v1/leaves";
 	
 	ImageView back;
 
@@ -141,7 +133,7 @@ public class CheckinLeav extends ListActivity
 
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(url_checkin,"GET", params);
+			JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_checkin,"GET", params);
 			
 			
 			// check log cat fro response

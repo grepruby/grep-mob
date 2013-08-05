@@ -31,7 +31,7 @@ public class Signup extends Activity
 	
 	JSONParser jsonParser = new JSONParser();
 	
-	private static String url_signup = "http://grep-ruby-leave-app.herokuapp.com/api/v1/registration";
+	
 	
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_ERRORS = "errors";
@@ -153,7 +153,7 @@ public class Signup extends Activity
 
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(url_signup,"POST", params);
+			JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_signup,"POST", params);
 			
 			// check log cat fro response
 			//Log.d("Create Response", json.toString());/
