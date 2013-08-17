@@ -4,22 +4,29 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@color/background">
+  android:background="@drawable/gr_image">
+    <ImageView 
+        android:id="@+id/back"
+        android:src="@drawable/back"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="65dp"
+        android:layout_height="25dp"/>
+   
+	<ImageView 
+    	android:id="@+id/signout" 
+        android:layout_width="65dp"
+        android:layout_height="40dp" 
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/log_out"/>
   <LinearLayout
   	android:orientation="vertical"
+  	android:layout_marginTop="100dp"
   	android:layout_width="match_parent"
   	android:layout_height="match_parent">
-	  <RelativeLayout 
-			         android:layout_width="fill_parent"
-				     android:layout_height="50dp" 
-				     android:background="#EAEAEA">
-				     <ImageView
-				           android:layout_height="40dp"
-				           android:layout_width="60dp" 
-						   android:id="@+id/back"  
-						   android:src="@drawable/back" >
-				     </ImageView>
-	  </RelativeLayout>
+  	
 	  <!-- Name Label -->
 	   <TableLayout
             android:layout_width="fill_parent"
@@ -31,18 +38,18 @@
 	   <TextView
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
-                     android:text="Name : "
+                     android:text="Name           : "
+                      android:textStyle="bold"
                      android:textSize="15sp"
                      android:layout_marginLeft="10dp"
-                     android:textColor="@color/white" />
+                     android:textColor="@color/black" />
 	  <TextView android:id="@+id/name_id"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:textSize="15sp"
-	            android:textStyle="bold"
 	            android:text=""
 	            android:layout_marginLeft="20dp"
-	            android:textColor="@color/white"/>
+	            android:textColor="@color/black"/>
 	  </TableRow>
 	  <!-- 
 	  <TextView android:id="@+id/date_from_id"
@@ -62,19 +69,18 @@
 	      <TextView
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
-                     android:text="Leave Type : "
+                     android:text="Leave Type  : "
                      android:textSize="15sp"
                      android:layout_marginLeft="10dp"
                      android:textStyle="bold"
-                     android:textColor="@color/white" />
+                     android:textColor="@color/black" />
 	     <TextView android:id="@+id/leave_type_id"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_marginLeft="20dp"
 	            android:textSize="15sp"
 	            android:text=""
-	            android:textStyle="bold"
-	           android:textColor="@color/white"/>
+	           android:textColor="@color/black"/>
 	    </TableRow>
 	     <TableRow
 	         	android:layout_width="fill_parent"
@@ -83,19 +89,18 @@
 	      <TextView
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
-                     android:text="Reason : "
+                     android:text="Reason        : "
                      android:textSize="15sp"
                      android:textStyle="bold"
                      android:layout_marginLeft="10dp"
-                     android:textColor="@color/white" />
+                     android:textColor="@color/black" />
 	    <TextView android:id="@+id/reason_id"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:textSize="15sp"
 	            android:layout_marginLeft="20dp"
 	            android:text=""
-	            android:textStyle="bold"
-	            android:textColor="@color/white"/>
+	            android:textColor="@color/black"/>
 	    </TableRow>
 	    <TableRow
 	         	android:layout_width="fill_parent"
@@ -104,11 +109,11 @@
 	      <TextView
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
-                     android:text="Status : "
+                     android:text="Status          : "
                      android:textSize="15sp"
                      android:textStyle="bold"
                      android:layout_marginLeft="10dp"
-                     android:textColor="@color/white" />
+                     android:textColor="@color/black" />
 	    <TextView android:id="@+id/status_id"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"

@@ -11,7 +11,10 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -28,18 +32,18 @@ import android.widget.TextView;
 public class ApplyLeave extends Activity
 {
 	
-	private Button cancel,leaveFromButton,leaveUntilButton,submit;
+	private Button submit;
 	private TextView leaveFromTxt,leaveUntillTxt,currentDate,name,toId,fromId;
 	private EditText reason;
 	private RadioGroup radioGroup;
 	private RadioButton radioButton,fullDay,fhalfDay,shalfDay;
+	private ImageView leaveFromButton,leaveUntilButton,back;
 	
     JSONParser jsonParser = new JSONParser();
 	
-	
-	
 	private static final String TAG_SUCCESS = "success";
-	
+	private static final String TAG_ERRORS = "errors";
+	private String server_error; 
 	
 	public static final int Date_dialog_id = 1;
 	// date and time
@@ -47,26 +51,30 @@ public class ApplyLeave extends Activity
 	private int mMonth;
 	private int mDay;
 	
+	private ProgressDialog pDialog;
+	
 	private String apiToken;
 	private String uName;
 	
 	private int selectedId;
+	
+	private int responseToken = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.apply_leave);
 		
-		leaveFromButton=(Button)findViewById(R.id.leave_from_btn);
+		leaveFromButton=(ImageView)findViewById(R.id.leave_from_btn);
 		leaveFromTxt=(TextView)findViewById(R.id.leave_from_txt);
-		leaveUntilButton=(Button)findViewById(R.id.until_btn);
+		leaveUntilButton=(ImageView)findViewById(R.id.until_btn);
 		leaveUntillTxt=(TextView)findViewById(R.id.until_txt);
 		currentDate=(TextView)findViewById(R.id.current_date);
 		toId=(TextView)findViewById(R.id.to_id);
 		fromId=(TextView)findViewById(R.id.from_id);
 		name=(TextView)findViewById(R.id.name);
 		reason=(EditText)findViewById(R.id.reason);
-		cancel=(Button)findViewById(R.id.cancel);
+		back=(ImageView)findViewById(R.id.back);
 		submit=(Button)findViewById(R.id.submit);
 		
 		
@@ -113,7 +121,7 @@ public class ApplyLeave extends Activity
 	        	
             }
            });
-		cancel.setOnClickListener(new View.OnClickListener() {
+		back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	
             	Bundle pb = new Bundle();
@@ -207,6 +215,21 @@ public class ApplyLeave extends Activity
 	class SendLeave extends AsyncTask<String, String, String> {
 
 		
+		/**
+		 * Before starting background thread Show Progress Dialog
+		 * */
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(ApplyLeave.this);
+			pDialog.setMessage("Please wait...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
+		
+		
+		
 
 		/**
 		 * Creating product
@@ -243,12 +266,12 @@ public class ApplyLeave extends Activity
 			// check for success tag
 			try {
 				String success = json.getString(TAG_SUCCESS);
-				
+				pDialog.dismiss();
 				
 				if (success.equals("true")) {
 					// successfully sign up
 					
-					
+					responseToken=1;
 
 	            	Bundle pb = new Bundle();
 	            	pb.putString("uName", uName);
@@ -261,7 +284,7 @@ public class ApplyLeave extends Activity
 					
 				} else {
 					// failed to signup
-					
+					server_error = json.getString(TAG_ERRORS);
 					
 				}
 			} catch (JSONException e) {
@@ -270,6 +293,60 @@ public class ApplyLeave extends Activity
 
 			return null;
 		}
+		
+		
+		@Override
+		protected void onPostExecute(String result) {
+			if(responseToken==0){
+				
+				server_error = server_error.replace("[", "");
+				server_error = server_error.replace("]", "");
+				server_error = server_error.replace("{", "");
+				server_error = server_error.replace("}", "");
+				server_error = server_error.replace(":", " ");
+				server_error = server_error.replace("\"", "");
+				alertDilog(server_error);
+			
+			}
+			
+			
+		}
 
 	}
+	
+	
+void alertDilog(String msg){
+		
+		// custom dialog
+		final Context context = this;
+		final Dialog dialog = new Dialog(context);
+		dialog.setContentView(R.layout.dilog);
+		dialog.setTitle("Log In");
+		
+		
+		// set the custom dialog components - text, image and button
+		TextView text = (TextView) dialog.findViewById(R.id.text);
+		text.setText(msg);
+		text.setTextColor(Color.parseColor("#000000"));
+		ImageView image = (ImageView) dialog.findViewById(R.id.image);
+		image.setImageResource(R.drawable.ic_launcher);
+
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+		// if button is clicked, close the custom dialog
+		dialogButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {				
+            	
+            	dialog.dismiss();
+	        	
+            }
+           });
+
+		dialog.show();
+
+
+}
+	
+	
+	
+	
 	}

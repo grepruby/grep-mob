@@ -9,11 +9,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,13 +25,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Signup extends Activity
 {
-	private EditText uname,email,password,c_password,mobile;
-	private Button submit,reset;
+	private EditText uname,email,password,c_password;
+	private Button submit;
 	
 	JSONParser jsonParser = new JSONParser();
 	
@@ -36,9 +41,9 @@ public class Signup extends Activity
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_ERRORS = "errors";
 	private String server_error;
-	private TextView wrongUname,wrongEmail,wrongPassword,wrongCpassword,wrongMobile;
+	private TextView wrongUname,wrongEmail,wrongPassword,wrongCpassword,logIn;
 	
-	int token=0;
+	private int responseToken=0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +54,18 @@ public class Signup extends Activity
 		email=(EditText)findViewById(R.id.email);
 		password=(EditText)findViewById(R.id.password);
 		c_password=(EditText)findViewById(R.id.c_password);
-		mobile=(EditText)findViewById(R.id.mobile);
 		submit=(Button)findViewById(R.id.submit);
-		reset=(Button)findViewById(R.id.reset);
 		wrongUname=(TextView)findViewById(R.id.wrong_uname);
 		wrongEmail=(TextView)findViewById(R.id.wrong_email);
 		wrongPassword=(TextView)findViewById(R.id.wrong_password);
 		wrongCpassword=(TextView)findViewById(R.id.wrong_cpassword);
-		wrongMobile=(TextView)findViewById(R.id.wrong_mobile);
+		logIn=(TextView)findViewById(R.id.log_in);
+		
 		
 		// button click event
 		submit.setOnClickListener(new View.OnClickListener() {
 
+					@SuppressLint("ResourceAsColor")
 					@Override
 					public void onClick(View view) {
 						// signup in background thread
@@ -89,35 +94,21 @@ public class Signup extends Activity
 						}else{
 							wrongCpassword.setText("");
 						}
-						if(mobile.getText().toString().equals("") || mobile.getText().toString().length()<10){
-							token=1;
-							wrongMobile.setText("Mobile no. must be 10 digit.");
-						}else{
-							wrongMobile.setText("");
-						}
 						if(token==0){
 							new SignupData().execute();
 						}
 						
 					}
 		});
-		
-		// button click event
-		reset.setOnClickListener(new View.OnClickListener() {
-
-							@Override
-							public void onClick(View view) {
-								
-								
-								uname.setText("");uname.setHint("New Username(min 6 characters)");
-								email.setText("");email.setHint("Email");
-								password.setText("");password.setHint("Password(min 8 alphanumerics)");
-								c_password.setText("");c_password.setHint("Confirm Password");
-								mobile.setText("");mobile.setHint("Mobile Phone Number");
-								
-								
-							}
-		});
+		logIn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {				
+            	
+            	Intent i = new Intent(getApplicationContext(), Login.class);
+				startActivity(i);
+				finish();
+	        	
+            }
+           });
 		
 	}
 	
@@ -140,16 +131,16 @@ public class Signup extends Activity
 			String userName = uname.getText().toString();
 			String userEmail = email.getText().toString();
 			String userPassword = password.getText().toString();
-			String confirmPassword = c_password.getText().toString();
-			String mobileNumber = mobile.getText().toString();
+			//String confirmPassword = c_password.getText().toString();
+			//String mobileNumber = mobile.getText().toString();
 
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("user[username]", userName));
 			params.add(new BasicNameValuePair("user[email]", userEmail));
 			params.add(new BasicNameValuePair("user[password]", userPassword));
-			params.add(new BasicNameValuePair("user[password_confirmation]", confirmPassword));
-			params.add(new BasicNameValuePair("user[phone]", mobileNumber));
+			//params.add(new BasicNameValuePair("user[password_confirmation]", confirmPassword));
+			//params.add(new BasicNameValuePair("user[phone]", mobileNumber));
 
 			// getting JSON Object
 			// Note that create product url accepts POST method
@@ -164,7 +155,7 @@ public class Signup extends Activity
 				
 				if (success.equals("true")) {
 					// successfully sign up
-					token=1;
+					responseToken=1;
 					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 					startActivity(i);
 					finish();
@@ -185,7 +176,7 @@ public class Signup extends Activity
 		}
 		@Override
 		protected void onPostExecute(String result) {
-			if(token==0){
+			if(responseToken==0){
 				server_error = server_error.replace("[", "");
 				server_error = server_error.replace("]", "");
 				server_error = server_error.replace("{", "");
@@ -200,23 +191,35 @@ public class Signup extends Activity
 		}
 		
 	}
-	@SuppressWarnings("deprecation")
+	
 	void alertDilog(String msg){
 		
-		AlertDialog alertDialog = new AlertDialog.Builder(Signup.this).create();
-		alertDialog.setTitle("Sign up");
-		alertDialog.setMessage(msg);
-		alertDialog.setIcon(R.drawable.logo);
+		// custom dialog
+		final Context context = this;
+		final Dialog dialog = new Dialog(context);
+		dialog.setContentView(R.layout.dilog);
+		dialog.setTitle("Log In");
 		
-		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            // Write your code here to execute after dialog closed
-            //Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
-            }
-    });
 
-    // Showing Alert Message
-    alertDialog.show();
+		// set the custom dialog components - text, image and button
+		TextView text = (TextView) dialog.findViewById(R.id.text);
+		text.setText(msg);
+		text.setTextColor(Color.parseColor("#000000"));
+		ImageView image = (ImageView) dialog.findViewById(R.id.image);
+		image.setImageResource(R.drawable.ic_launcher);
+
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+		// if button is clicked, close the custom dialog
+		dialogButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {				
+            	
+            	dialog.dismiss();
+	        	
+            }
+           });
+
+		dialog.show();
+
 
 }
 

@@ -2,114 +2,166 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background" >
+    android:background="@drawable/gr_login_image" >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:orientation="vertical" >
-
-        	<EditText
-            android:id="@+id/uname"
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:background="#ffffff"
-            android:inputType="textEmailAddress"
-            android:hint="New Username(min 6 characters)"
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:textColor="@android:color/black" >
-            <requestFocus></requestFocus></EditText>
-            
-        	<TextView
+			<TableLayout android:layout_width="fill_parent"
+             android:layout_height="wrap_content">
+        <TableRow >
+        <TextView
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text="Full Name"
+             android:textSize="11sp"
+             android:layout_marginTop="5dp"
+             android:layout_marginLeft="25dp"
+             android:textColor="@color/black" />
+        <TextView
              android:id="@+id/wrong_uname"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
-             android:text=""
-             android:textSize="14sp"
-             android:layout_marginTop="2dp"
-             android:layout_marginLeft="10dp"
+             android:text=" "
+             android:textSize="11sp"
+             android:layout_marginTop="5dp"
+             android:layout_marginLeft="20dp"
              android:textColor="#DD4B46" />
-
+        </TableRow>    
+        </TableLayout>
         	<EditText
-            android:id="@+id/email"
+            android:id="@+id/uname"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="#ffffff"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
             android:inputType="textEmailAddress"
-            android:hint="Email"
+            android:hint=""
             android:textCursorDrawable="@drawable/color_cursor"
-            android:textColor="@android:color/black" />
-        	<TextView
+            android:background="@drawable/backwithborder"
+            android:textColor="@android:color/black" >
+            <requestFocus></requestFocus></EditText>
+        	
+
+        	<TableLayout android:layout_width="fill_parent"
+             android:layout_height="wrap_content">
+        <TableRow >
+        <TextView
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text="Email"
+             android:textSize="11sp"
+             android:layout_marginTop="5dp"
+             android:layout_marginLeft="25dp"
+             android:textColor="@color/black" />
+        <TextView
              android:id="@+id/wrong_email"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
-             android:text=""
-             android:textSize="14sp"
-             android:layout_marginTop="2dp"
-             android:layout_marginLeft="10dp"
+             android:text=" "
+             android:textSize="11sp"
+             android:layout_marginTop="5dp"
+             android:layout_marginLeft="20dp"
              android:textColor="#DD4B46" />
-
+        </TableRow>    
+        </TableLayout>
         	<EditText
-            android:id="@+id/password"
+            android:id="@+id/email"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="#ffffff"
-            android:inputType="textPassword"
-            android:hint="Password(min 8 alphanumerics)"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/backwithborder"
+            android:inputType="textEmailAddress"
+            android:hint=""
             android:textCursorDrawable="@drawable/color_cursor"
-            android:textColor="@android:color/black" >
-            </EditText>
-            <TextView
+            android:textColor="@android:color/black" />
+        	
+
+        	<TableLayout android:layout_width="fill_parent"
+             android:layout_height="wrap_content">
+        <TableRow >
+        <TextView
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text="Password"
+             android:textSize="11sp"
+             android:layout_marginTop="5dp"
+             android:layout_marginLeft="25dp"
+             android:textColor="@color/black" />
+        <TextView
              android:id="@+id/wrong_password"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
-             android:text=""
-             android:textSize="14sp"
-             android:layout_marginTop="2dp"
-             android:layout_marginLeft="10dp"
+             android:text=" "
+             android:textSize="11sp"
+             android:layout_marginTop="5dp"
+             android:layout_marginLeft="20dp"
              android:textColor="#DD4B46" />
-            
-            <EditText
-            android:id="@+id/c_password"
+        </TableRow>    
+        </TableLayout>
+        	<EditText
+            android:id="@+id/password"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="#ffffff"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/backwithborder"
             android:inputType="textPassword"
-            android:hint="Confirm Password"
+            android:hint=""
             android:textCursorDrawable="@drawable/color_cursor"
             android:textColor="@android:color/black" >
-        	</EditText>
-        	<TextView
+            </EditText>
+         <TableLayout android:layout_width="fill_parent"
+             android:layout_height="wrap_content">
+        <TableRow >
+        <TextView
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text="Confirm Password"
+             android:textSize="11sp"
+             android:layout_marginTop="5dp"
+             android:layout_marginLeft="25dp"
+             android:textColor="@color/black" />
+        <TextView
              android:id="@+id/wrong_cpassword"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
-             android:text=""
-             android:textSize="14sp"
-             android:layout_marginTop="2dp"
-             android:layout_marginLeft="10dp"
+             android:text=" "
+             android:textSize="11sp"
+             android:layout_marginTop="5dp"
+             android:layout_marginLeft="20dp"
              android:textColor="#DD4B46" />
-        	
-            <EditText
+        </TableRow>    
+        </TableLayout>
+         <EditText
+            android:id="@+id/c_password"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/backwithborder"
+            android:inputType="textPassword"
+            android:hint=""
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textColor="@android:color/black" >
+        	</EditText>
+         
+          <!--   <EditText
             android:id="@+id/mobile"   
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:background="#ffffff"
+            android:background="@drawable/backwithborder"
             android:inputType="phone" 
             android:hint="Mobile Phone Number"
             android:textCursorDrawable="@drawable/color_cursor"
@@ -121,35 +173,33 @@
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:text=""
-             android:textSize="14sp"
+             android:textSize="11sp"
              android:layout_marginTop="2dp"
-             android:layout_marginLeft="10dp"
+             android:layout_marginLeft="20dp"
              android:textColor="#DD4B46" />
-    </LinearLayout>
-
-	   <RelativeLayout 
-	       	android:layout_width="fill_parent"
-	        android:layout_height="fill_parent" 
-	        android:gravity="bottom">
-					<LinearLayout
-	                 android:layout_width="fill_parent"
-	                 android:layout_height="wrap_content" 
-	                 android:orientation="horizontal">
-	         		<Button 
+               -->
+            <Button 
 	         		android:id="@+id/submit"    
 	         		android:text="Submit" 
 					android:layout_weight="1" 
-					android:layout_width="wrap_content" 
+					style="@style/btnStyleBeige"
+					android:layout_marginTop="10dp"
+					android:layout_marginLeft="20dp"
+					android:layout_marginRight="20dp"
+					android:layout_width="fill_parent" 
 					android:layout_height="wrap_content">
-	         		</Button>
-					<Button 
-					android:id="@+id/reset"    
-					android:text="Reset" 
-					android:layout_weight="1"  
-					android:layout_width="wrap_content" 
-					android:layout_height="wrap_content">
-					</Button>
-					</LinearLayout>
-	    </RelativeLayout>
+	        </Button>
+             <TextView
+                     android:id="@+id/log_in"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:text="Already has account! Login here"
+                     android:textSize="17sp"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginLeft="30dp"
+                     android:autoLink="web"
+                     android:textColor="#49bbe9" />
+    </LinearLayout>
 
+	   
 </FrameLayout>

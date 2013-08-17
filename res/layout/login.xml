@@ -2,24 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background" >
+    android:background="@drawable/gr_login_image" >
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:orientation="vertical" >
 
         <EditText
             android:id="@+id/email"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="50dp"
-            android:background="#ffffff"
+            android:background="@drawable/backwithborder"
             android:inputType="textEmailAddress"
-            android:hint="@string/login"
             android:textCursorDrawable="@drawable/color_cursor"
+            android:drawableLeft="@drawable/login_logo"
             android:textColor="@android:color/black" >
             <requestFocus></requestFocus></EditText>
         <TextView
@@ -29,20 +30,20 @@
              android:text=""
              android:textSize="14sp"
              android:layout_marginTop="5dp"
-             android:layout_marginLeft="10dp"
+             android:layout_marginLeft="20dp"
              android:textColor="#DD4B46" />
         
         <EditText
             android:id="@+id/password"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="30dp"
-            android:background="#ffffff"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+             android:background="@drawable/backwithborder"
             android:inputType="textPassword"
-            android:hint="@string/pwd"
             android:textCursorDrawable="@drawable/color_cursor"
+            android:drawableLeft="@drawable/password_logo"
             android:imeOptions="actionDone"
             android:textColor="@android:color/black" >
         </EditText>
@@ -53,36 +54,41 @@
                      android:text=""
                      android:textSize="14sp"
                      android:layout_marginTop="5dp"
-                     android:layout_marginLeft="10dp"
+                     android:layout_marginLeft="20dp"
                      android:textColor="#DD4B46" />
         
-         <TableLayout
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="10dp"
-	        android:layout_marginTop="30dp" >
-             <TableRow
-                 android:id="@+id/tableRow1"
-                 android:layout_width="fill_parent"
-                 android:layout_height="wrap_content" >
-                 <Button
+           <Button
                      android:id="@+id/login"
-                     android:layout_width="110dp"
-                     android:layout_height="50dp"
-                     android:layout_marginLeft="10dp"
-                     android:layout_marginRight="10dp"
+                     android:layout_width="fill_parent"
+                     android:layout_height="40dp"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginLeft="20dp"
+                     android:layout_marginRight="20dp"
+                     style="@style/btnStyleBeige"
                      android:text="@string/login" />
-			
-                 <TextView
+         
+           <TextView
+                     android:id="@+id/new_user"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:text="New user? Register here"
+                     android:textSize="17sp"
+                     android:layout_marginTop="20dp"
+                     android:layout_marginLeft="20dp"
+                     android:autoLink="web"
+                     android:textColor="#49bbe9" />
+           
+           <TextView
                      android:id="@+id/forgot"
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
-                     android:text="@string/forgot"
+                     android:text="Forgot Password?"
                      android:textSize="17sp"
-                     android:layout_marginLeft="10dp"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginLeft="20dp"
                      android:autoLink="web"
-                     android:textColor="@android:color/white" />
-         </TableRow>
-      </TableLayout>
+                     android:textColor="#49bbe9" />
+        
+        
     </LinearLayout>
 </RelativeLayout>

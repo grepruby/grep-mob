@@ -4,6 +4,8 @@ package com.greprubyleaveapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +25,7 @@ public class LeaveDetail  extends Activity {
 	private static final String LEAVE_TYPE = "leave_type";
 	private static final String REASON = "reason";
 	private static final String STATUS = "status";
+	private String isComingFrom="";
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class LeaveDetail  extends Activity {
         String status = in.getStringExtra(STATUS);
         uName  = in.getStringExtra("uName");
         apiToken  = in.getStringExtra("apiToken");
+        isComingFrom  = in.getStringExtra("isComingFrom");
         
         // Displaying all values on the screen
         TextView txtName = (TextView) findViewById(R.id.name_id);
@@ -57,6 +61,15 @@ public class LeaveDetail  extends Activity {
         txtLeaveType.setText(leave_type);
         txtReason.setText(reason);
         txtStatus.setText(status);
+        if(status.equals("pending")){
+        	txtStatus.setTextColor(Color.BLUE);
+        }else{
+	        if(status.equals("approved")){
+	        	txtStatus.setTextColor(Color.GREEN);
+	        }else{
+	        	txtStatus.setTextColor(Color.RED);
+	        	}
+	     }
         
         
         
@@ -69,9 +82,18 @@ public class LeaveDetail  extends Activity {
             	pb.putString("uName", uName);
             	pb.putString("apiToken", apiToken);
             	
+            	if(isComingFrom.equals("Checkin")){
             	Intent i = new Intent(view.getContext(), CheckinLeav.class); 	
             	i.putExtras(pb);
 	        	startActivity(i);
+	        	overridePendingTransition( R.anim.slide_in_right, R.anim.slide_out_right );
+            	}else{
+            		Intent i = new Intent(view.getContext(), ApplyOrCheckin.class); 	
+                	i.putExtras(pb);
+    	        	startActivity(i);
+    	        	overridePendingTransition( R.anim.slide_in_right, R.anim.slide_out_right );
+            	}
+            	
 	        	finish();
 	        	
             }

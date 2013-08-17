@@ -61,13 +61,27 @@ public class LoginDataBaseAdapter
 	       // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
 	        return numberOFEntriesDeleted;
 		}	
-		public String getSinlgeEntry(String userName)
+		public String getSinlgeEntryEmail()
 		{
-			Cursor cursor=db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+			//Cursor cursor=db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+			Cursor cursor=db.query("LOGIN", null, null, null, "ID", null, "ID DESC");
 	        if(cursor.getCount()<1) // UserName Not Exist
 	        {
 	        	cursor.close();
-	        	return "NOT EXIST";
+	        	return "";
+	        }
+		    cursor.moveToFirst();
+			String email= cursor.getString(cursor.getColumnIndex("USERNAME"));
+			cursor.close();
+			return email;				
+		}
+		public String getSinlgeEntryPassword()
+		{
+			Cursor cursor=db.query("LOGIN", null, null, null, "ID", null, "ID DESC");
+	        if(cursor.getCount()<1) // UserName Not Exist
+	        {
+	        	cursor.close();
+	        	return "";
 	        }
 		    cursor.moveToFirst();
 			String password= cursor.getString(cursor.getColumnIndex("PASSWORD"));

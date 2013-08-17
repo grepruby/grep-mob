@@ -1,6 +1,5 @@
 package com.greprubyleaveapp;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,34 +8,29 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQueryBuilder;
+import android.graphics.Color;
 import android.os.AsyncTask;
+
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Login extends Activity
 {
 	
 	private Button loginButton;
-	private TextView forgot,wrongEmail,wrongPassword;
+	private TextView forgot,signUp,wrongEmail,wrongPassword;
 	private EditText email,password;
 	
 	private String userEmail ;
@@ -60,7 +54,12 @@ public class Login extends Activity
     private static final String TOKEN="api_token";
     private static final String NAME="name";
     
+    private String storedEmail;
+    private String storedPassword;
+    
     LoginDataBaseAdapter loginDataBaseAdapter;
+    
+    
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +67,13 @@ public class Login extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
-		loginButton=(Button)findViewById(R.id.login);
-		email=(EditText)findViewById(R.id.email);
-		password=(EditText)findViewById(R.id.password);
-		forgot=(TextView)findViewById(R.id.forgot);
-		wrongEmail=(TextView)findViewById(R.id.wrong_email);
-		wrongPassword=(TextView)findViewById(R.id.wrong_password);
+		loginButton = (Button)findViewById(R.id.login);
+		email = (EditText)findViewById(R.id.email);
+		password = (EditText)findViewById(R.id.password);
+		signUp = (TextView)findViewById(R.id.new_user);
+		forgot = (TextView)findViewById(R.id.forgot);
+		wrongEmail = (TextView)findViewById(R.id.wrong_email);
+		wrongPassword = (TextView)findViewById(R.id.wrong_password);
 		
 	// get Instance  of Database Adapter
 		loginDataBaseAdapter=new LoginDataBaseAdapter(this);
@@ -105,13 +105,36 @@ public class Login extends Activity
             }
            });
 		
+		signUp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {				
+            	
+            	Intent i = new Intent(getApplicationContext(), Signup.class);
+				startActivity(i);
+				finish();
+	        	
+            }
+           });
+		
+		
 		forgot.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+            public void onClick(View view) {				
             	
             	showDialog(DLG_EXAMPLE1);
 	        	
             }
            });
+		
+		
+		
+		storedEmail = loginDataBaseAdapter.getSinlgeEntryEmail();
+		storedPassword = loginDataBaseAdapter.getSinlgeEntryPassword();
+		
+		email.setText(storedEmail);
+		password.setText(storedPassword);
+		
+		
+		//Toast.makeText(getApplicationContext(), storedEmail, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(getApplicationContext(), storedPassword, Toast.LENGTH_SHORT).show();
 		
 		
 	}
@@ -162,15 +185,16 @@ public class Login extends Activity
     private Dialog createExampleDialog() {
  
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("GrepRuby");
-        builder.setMessage("Enter your email:");
+        builder.setTitle("Enter your email:");
+        builder.setIcon(R.drawable.logo);
  
          // Use an EditText view to get user input.
          final EditText input = new EditText(this);
          input.setId(TEXT_ID);
          builder.setView(input);
- 
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+         
+         
+         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
  
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
@@ -249,6 +273,7 @@ public class Login extends Activity
 					// closing this screen
 					finish();
 				} else {
+					
 					// failed to signup
 					//alertDilog();
 					//token=0;
@@ -281,10 +306,11 @@ public class Login extends Activity
 	/**
 	 * Background Async Task to Create new product
 	 * */
+	
 	class SendEmail extends AsyncTask<String, String, String> {
-
 		
-			
+		
+		
 		/**
 		 * Creating product
 		 * */
@@ -307,7 +333,6 @@ public class Login extends Activity
 				success = json.getString(TAG_SUCCESS);
 				
 				if (success.equals("true")) {
-					
 					apiToken = json.getString(TOKEN);
 					String uName = json.getString(NAME);
 					Bundle bundle = new Bundle();
@@ -347,23 +372,35 @@ public class Login extends Activity
 		
 	}
 	
-			@SuppressWarnings("deprecation")
+			
 			void alertDilog(){
 				
-				AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-				alertDialog.setTitle("Log in");
-				alertDialog.setMessage("The username or password you entered is incorrect.");
-				alertDialog.setIcon(R.drawable.logo);
+				// custom dialog
+				final Context context = this;
+				final Dialog dialog = new Dialog(context);
+				dialog.setContentView(R.layout.dilog);
+				dialog.setTitle("Log In");
 				
-				alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-		            public void onClick(DialogInterface dialog, int which) {
-		            // Write your code here to execute after dialog closed
-		            //Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+	 
+				// set the custom dialog components - text, image and button
+				TextView text = (TextView) dialog.findViewById(R.id.text);
+				text.setText("The username or password you entered is incorrect.");
+				text.setTextColor(Color.parseColor("#000000"));
+				ImageView image = (ImageView) dialog.findViewById(R.id.image);
+				image.setImageResource(R.drawable.ic_launcher);
+	 
+				Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+				// if button is clicked, close the custom dialog
+				dialogButton.setOnClickListener(new View.OnClickListener() {
+		            public void onClick(View view) {				
+		            	
+		            	dialog.dismiss();
+			        	
 		            }
-		    });
-		
-		    // Showing Alert Message
-		    alertDialog.show();
+		           });
+	 
+				dialog.show();
+
 		
 	}
 			
@@ -373,7 +410,7 @@ public class Login extends Activity
 		    	
 		  loginDataBaseAdapter.insertEntry(userEmail, userPassword);
 		        
-		        Toast.makeText(getApplicationContext(), userEmail, Toast.LENGTH_SHORT).show();
+		       // Toast.makeText(getApplicationContext(), userEmail, Toast.LENGTH_SHORT).show();
 		       
 		    }
 	  

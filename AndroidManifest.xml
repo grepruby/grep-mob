@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.greprubyleaveapp"
-    android:versionCode="2"
-    android:versionName="1.1" >
+    android:versionCode="3"
+    android:versionName="1.2" >
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-
-   <application android:icon="@drawable/ic_launcher" android:label="@string/app_name">
-        <activity android:name=".MainActivity"
+   <supports-screens  android:largeScreens="true"   android:normalScreens="true"  android:smallScreens="true"/> 
+   <application android:theme="@android:style/Theme.NoTitleBar" android:icon="@drawable/ic_launcher">
+        <activity android:name=".Login"
                   android:label="@string/app_name" 
                   android:configChanges="orientation|keyboardHidden|keyboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-    </activity>
-	<activity android:name=".Login" />
-	<activity android:name=".Signup" />
-	<activity android:name=".ApplyOrCheckin" />
-	<activity android:name=".ApplyLeave" android:screenOrientation="portrait"/>
-	<activity android:name=".CheckinLeav" android:screenOrientation="portrait"/>
-	<activity android:name=".LeaveDetail" android:screenOrientation="portrait"/>
+    	</activity>
+    
 	
+		<activity android:name=".Signup" android:screenOrientation="portrait"/>
+		<activity android:name=".ApplyOrCheckin" android:screenOrientation="portrait"/>
+		<activity android:name=".ApplyLeave" android:screenOrientation="portrait"/>
+		<activity android:name=".CheckinLeav" android:screenOrientation="portrait"/>
+		<activity android:name=".LeaveDetail" android:screenOrientation="portrait"/>
+		<activity android:name=".CalendarView" android:screenOrientation="portrait"/>
     </application>
     
-    <!--  Internet Permissions -->
+    <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+	<uses-permission android:name="android.permission.WRITE_CALENDAR" />
+	
 </manifest>
