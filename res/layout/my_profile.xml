@@ -27,27 +27,35 @@
         android:layout_marginTop="120dp"
         android:orientation="horizontal" >
 
-       <LinearLayout
+       <RelativeLayout
         android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-		      <ImageView
+        android:layout_height="wrap_content">
+         	 <ImageView
 				android:id="@+id/imgView"
-				android:layout_width="80dp"
-				android:layout_height="140dp"
-				android:layout_marginLeft="15dp"
-				android:src="@drawable/profile_pic"></ImageView>
-		
+				android:layout_marginTop="15dp"
+				android:layout_width="75dp"
+				android:layout_height="105dp"
+				android:layout_marginLeft="17dp"
+				android:src="@drawable/profile_pic">
+		      </ImageView>
+		      
+		 	 <ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="0dp"
+				android:src="@drawable/vector_frame">
+		      </ImageView>
 			<TextView
                      android:id="@+id/buttonLoadPicture"
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
                      android:text="Tap to change"
+                     android:layout_marginTop="130dp"
                      android:textSize="12sp"
                      android:layout_marginLeft="15dp"
                      android:autoLink="web"
                      android:textColor="#49bbe9" />
-		</LinearLayout>
+		</RelativeLayout>
 		 <LinearLayout
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
@@ -235,7 +243,6 @@
                      android:layout_marginLeft="10dp"
                      android:textColor="@color/black"
                      />
-		      
           </TableRow >
              <ImageView 
 	           android:layout_width="320dp"
