@@ -35,7 +35,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ApplyOrCheckin extends ListActivity
 {
-	private Button apply;
+	private Button apply,profile;
 	private ImageView signOut,calander;
 	private TextView checkin;
 	
@@ -78,12 +78,14 @@ public class ApplyOrCheckin extends ListActivity
 		
 		final Bundle pb = new Bundle();
 		
+		pb.putString("uName", uName);
+    	pb.putString("apiToken", apiToken);
+    	
 		apply=(Button)findViewById(R.id.apply);
 		apply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	
-            	pb.putString("uName", uName);
-            	pb.putString("apiToken", apiToken);
+            	
             	Intent i = new Intent(view.getContext(), ApplyLeave.class); 	
             	i.putExtras(pb);
 	        	startActivity(i);
@@ -94,10 +96,6 @@ public class ApplyOrCheckin extends ListActivity
 		checkin=(TextView)findViewById(R.id.checkin);
 		checkin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            	
-            	
-            	pb.putString("uName", uName);
-            	pb.putString("apiToken", apiToken);
             	
             	Intent i = new Intent(view.getContext(), CheckinLeav.class); 	
             	i.putExtras(pb);
@@ -120,9 +118,6 @@ public class ApplyOrCheckin extends ListActivity
 		calander.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	
-
-            	pb.putString("uName", uName);
-            	pb.putString("apiToken", apiToken);
             	
             	Intent i = new Intent(view.getContext(), CalendarView.class); 	
             	i.putExtras(pb);
@@ -133,7 +128,16 @@ public class ApplyOrCheckin extends ListActivity
             }
            });
 		
-		
+		profile=(Button)findViewById(R.id.profile);
+		profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+            	Intent i = new Intent(view.getContext(), MyProfile.class); 
+            	i.putExtras(pb);
+	        	startActivity(i);
+	        	finish();
+	        	
+            }
+           });
 		
 		
 		

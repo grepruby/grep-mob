@@ -51,7 +51,7 @@ public class LeaveDetail  extends Activity {
         //TextView txtDateTo = (TextView) findViewById(R.id.date_to_id);
         TextView txtLeaveType = (TextView) findViewById(R.id.leave_type_id);
         TextView txtReason = (TextView) findViewById(R.id.reason_id);
-        TextView txtStatus = (TextView) findViewById(R.id.status_id);
+        //TextView txtStatus = (TextView) findViewById(R.id.status_id);
         
         
         
@@ -60,18 +60,18 @@ public class LeaveDetail  extends Activity {
        // txtDateTo.setText(leave_to);
         txtLeaveType.setText(leave_type);
         txtReason.setText(reason);
-        txtStatus.setText(status);
+      /*  txtStatus.setText(status);
         if(status.equals("pending")){
         	txtStatus.setTextColor(Color.BLUE);
         }else{
 	        if(status.equals("approved")){
-	        	txtStatus.setTextColor(Color.GREEN);
+	        	txtStatus.setTextColor(Color.parseColor("#21610B"));
 	        }else{
 	        	txtStatus.setTextColor(Color.RED);
 	        	}
 	     }
         
-        
+        */
         
         
         back=(ImageView)findViewById(R.id.back);

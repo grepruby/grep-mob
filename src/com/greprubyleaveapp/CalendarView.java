@@ -12,6 +12,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.CalendarContract;
+import android.provider.CalendarContract.Events;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,7 +51,7 @@ public class CalendarView extends Activity {
 		apiToken = gb.getString("apiToken");
 		uName  = gb.getString("uName");
 		
-		 Locale.setDefault( Locale.US );
+		Locale.setDefault( Locale.US );
 		month = (GregorianCalendar) GregorianCalendar.getInstance();
 		itemmonth = (GregorianCalendar) month.clone();
 
@@ -112,9 +114,25 @@ public class CalendarView extends Activity {
 
 			}
 		});
+		
+		
+		/*Intent calIntent = new Intent(Intent.ACTION_INSERT);
+		calIntent.setType("vnd.android.cursor.item/event");
+		calIntent.putExtra(Events.TITLE, "My House Party");
+		calIntent.putExtra(Events.EVENT_LOCATION, "My Beach House");
+		calIntent.putExtra(Events.DESCRIPTION, "A Pig Roast on the Beach");
+		GregorianCalendar calDate = new GregorianCalendar(2013, 8, 15);
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+		calDate.getTimeInMillis());
+		calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+		calDate.getTimeInMillis());
+		startActivity(calIntent);*/
+		
 	}
 
 	protected void setNextMonth() {
+		
 		if (month.get(GregorianCalendar.MONTH) == month
 				.getActualMaximum(GregorianCalendar.MONTH)) {
 			month.set((month.get(GregorianCalendar.YEAR) + 1),
