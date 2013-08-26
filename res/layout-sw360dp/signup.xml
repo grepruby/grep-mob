@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
     android:background="@drawable/gr_login_image" >
 
     <LinearLayout
@@ -11,8 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:orientation="vertical" >
-        
-	<TableLayout android:layout_width="fill_parent"
+			<TableLayout android:layout_width="fill_parent"
              android:layout_height="wrap_content">
         <TableRow >
         <TextView
@@ -156,11 +154,7 @@
             android:textColor="@android:color/black" >
         	</EditText>
          
-          <!--   
-          <TableLayout android:layout_width="fill_parent"
-             android:layout_height="wrap_content">
-        	<TableRow >
-          <EditText
+          <!--   <EditText
             android:id="@+id/mobile"   
             android:layout_width="fill_parent"
             android:layout_height="35dp"
@@ -183,8 +177,6 @@
              android:layout_marginTop="2dp"
              android:layout_marginLeft="20dp"
              android:textColor="#DD4B46" />
-            </TableRow>    
-        </TableLayout>
                -->
             <Button 
 	         		android:id="@+id/submit"    
@@ -210,4 +202,4 @@
     </LinearLayout>
 
 	   
-</LinearLayout>
+</FrameLayout>

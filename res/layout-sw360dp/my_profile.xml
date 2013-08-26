@@ -1,35 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
     android:background="@drawable/gr_image" >
-    <TableLayout 
-    		android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="0,1"
-            android:layout_marginTop="5dp">
-    <TableRow >      
-	    <ImageView 
-	        android:id="@+id/back"
-	        android:src="@drawable/back"
-	      	android:layout_gravity="left"
-	        android:layout_width="65dp"
-	        android:layout_height="25dp"/>
-	   
-		<ImageView 
-	    	android:id="@+id/signout" 
-	        android:layout_width="45dp"
-	        android:layout_height="25dp" 
-	        android:layout_gravity="right"
-	        android:src="@drawable/log_out"/>
-	</TableRow>  
-</TableLayout>
+     <ImageView 
+        android:id="@+id/back"
+        android:src="@drawable/back"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="65dp"
+        android:layout_height="25dp"/>
+   
+	<ImageView 
+    	android:id="@+id/signout" 
+        android:layout_width="65dp"
+        android:layout_height="40dp" 
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/log_out"/>
+	
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="120dp"
         android:orientation="horizontal" >
 
        <RelativeLayout
@@ -161,7 +156,7 @@
     <LinearLayout
 		    android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginTop="30dp"
+	        android:layout_marginTop="300dp"
 	        android:orientation="vertical">
         <TableLayout android:layout_width="fill_parent"
              		 android:layout_height="wrap_content">
@@ -258,4 +253,4 @@
 		 </TableLayout>    
 		     
     	</LinearLayout>
-</LinearLayout>
+</FrameLayout>

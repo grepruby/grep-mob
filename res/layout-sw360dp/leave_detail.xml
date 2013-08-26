@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@drawable/gr_image">
-<TableLayout 
-    		android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="0,1"
-            android:layout_marginTop="5dp">
-    <TableRow >      
-	    <ImageView 
-	        android:id="@+id/back"
-	        android:src="@drawable/back"
-	      	android:layout_gravity="left"
-	        android:layout_width="65dp"
-	        android:layout_height="25dp"/>
-	   
-		<ImageView 
-	    	android:id="@+id/signout" 
-	        android:layout_width="45dp"
-	        android:layout_height="25dp" 
-	        android:layout_gravity="right"
-	        android:src="@drawable/log_out"/>
-	</TableRow>  
-</TableLayout>
+    <ImageView 
+        android:id="@+id/back"
+        android:src="@drawable/back"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="65dp"
+        android:layout_height="25dp"/>
+   
+	<ImageView 
+    	android:id="@+id/signout" 
+        android:layout_width="65dp"
+        android:layout_height="40dp" 
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/log_out"/>
   <LinearLayout
   	android:orientation="vertical"
-  	android:layout_marginTop="75dp"
+  	android:layout_marginTop="117dp"
   	android:layout_width="fill_parent"
-  	android:layout_height="wrap_content"
+  	android:layout_height="300dp"
   	>
   	
 	  <!-- Name Label -->
@@ -168,7 +163,7 @@
      android:layout_width="fill_parent"
 	 android:layout_height="wrap_content"
 	 android:orientation="horizontal"
-	 android:layout_marginTop="10dp"
+	 android:layout_marginTop="300dp"
      >
 	   
       		<LinearLayout 
@@ -259,4 +254,4 @@
 	     	
 	     	 
  	</LinearLayout>
-</LinearLayout>
+</FrameLayout>

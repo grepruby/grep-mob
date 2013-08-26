@@ -1,35 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
     android:background="@drawable/gr_image" >
     
-    <TableLayout 
-    		android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="0,1"
-            android:layout_marginTop="5dp">
-    <TableRow >      
-	    <ImageView 
-	        android:id="@+id/back"
-	        android:src="@drawable/back"
-	      	android:layout_gravity="left"
-	        android:layout_width="65dp"
-	        android:layout_height="25dp"/>
-	   
-		<ImageView 
-	    	android:id="@+id/signout" 
-	        android:layout_width="45dp"
-	        android:layout_height="25dp" 
-	        android:layout_gravity="right"
-	        android:src="@drawable/log_out"/>
-	</TableRow>  
-</TableLayout>
+    <ImageView 
+        android:id="@+id/back"
+        android:src="@drawable/back"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="6dp"
+        android:layout_width="65dp"
+        android:layout_height="28dp"/>
+   
+	<ImageView 
+    	android:id="@+id/signout" 
+        android:layout_width="65dp"
+        android:layout_height="40dp" 
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/log_out"/>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="85dp"
         android:orientation="vertical" >
 
         <TableLayout
@@ -49,7 +43,7 @@
                     android:layout_marginLeft="50dp"
                     android:text="Welcome"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                      android:id="@+id/name"
@@ -58,7 +52,7 @@
                     android:layout_marginLeft="5dp"
                     android:text="Zareen Khan"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
             </TableRow>
 
             <TableRow
@@ -74,7 +68,7 @@
                     android:text="Date Applied : "
                     android:textColor="@android:color/black"
                     android:visibility="gone"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/current_date"
@@ -90,7 +84,7 @@
                 android:id="@+id/tableRow3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" >
+                android:layout_marginTop="15dp" >
 
                 <TextView
                      android:id="@+id/from_id"
@@ -99,7 +93,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="Leave From: "
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/leave_from_txt"
@@ -127,7 +121,7 @@
                     android:layout_marginLeft="10dp"
                     android:text=" To : "
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/until_txt"
@@ -159,7 +153,7 @@
               <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="17dp"
                     android:textColor="@android:color/black"
                     android:layout_marginLeft="10dp"
                     android:text="Leave type" />
@@ -175,7 +169,6 @@
 	                android:layout_height="wrap_content"
 	                android:checked="true"
 	                android:textColor="@android:color/black"
-	                android:textSize="13sp"
 	                android:text="Full day" />
 	
 	            <RadioButton
@@ -183,7 +176,6 @@
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="@android:color/black"
-	                android:textSize="13sp"
 	                android:text="Half day(10am-3pm)" />
 	            
 	            <RadioButton
@@ -191,7 +183,6 @@
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="@android:color/black"
-	                android:textSize="13sp"
 	                android:text="Half day(3pm-7pm)" />
 	         </RadioGroup>
 		</TableRow>
@@ -200,14 +191,13 @@
                     android:id="@+id/reason"
                     android:background="@drawable/backwithborder"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
                     android:hint=" Reason "
                     android:inputType="textMultiLine" 
-    				android:lines="2" 
-				    android:minLines="2" 
+    				android:lines="4" 
+				    android:minLines="3" 
 				    android:gravity="top|left" 
-				    android:maxLines="4" 
+				    android:maxLines="5" 
 				    android:layout_height="wrap_content" 
 				    android:layout_width="280dp" 
 				    android:scrollbars="vertical" 
@@ -236,4 +226,4 @@
             </Button>
         </LinearLayout>
     </RelativeLayout>
-</LinearLayout>
+</FrameLayout>
