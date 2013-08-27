@@ -21,9 +21,10 @@
             android:inputType="textEmailAddress"
             android:textCursorDrawable="@drawable/color_cursor"
             android:drawableLeft="@drawable/login_logo"
-            android:text="sumit@grepruby.com"
+            android:text="demo@grepruby.com"
             android:textColor="@android:color/black" >
             <requestFocus></requestFocus></EditText>
+            
         <TextView
              android:id="@+id/wrong_email"
              android:layout_width="fill_parent"
@@ -41,7 +42,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-             android:background="@drawable/backwithborder"
+            android:background="@drawable/backwithborder"
             android:inputType="textPassword"
             android:textCursorDrawable="@drawable/color_cursor"
             android:drawableLeft="@drawable/password_logo"
@@ -49,6 +50,7 @@
             android:text="12345678"
             android:textColor="@android:color/black" >
         </EditText>
+        
         <TextView
                      android:id="@+id/wrong_password"
                      android:layout_width="fill_parent"
@@ -58,7 +60,7 @@
                      android:layout_marginTop="5dp"
                      android:layout_marginLeft="20dp"
                      android:textColor="#DD4B46" />
-        
+           
            <Button
                      android:id="@+id/login"
                      android:layout_width="fill_parent"
@@ -68,7 +70,7 @@
                      android:layout_marginRight="20dp"
                      style="@style/btnStyleBeige"
                      android:text="@string/login" />
-         
+           
            <TextView
                      android:id="@+id/new_user"
                      android:layout_width="fill_parent"

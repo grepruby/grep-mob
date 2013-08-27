@@ -14,8 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -31,6 +29,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 
 public class ApplyOrCheckin extends ListActivity
@@ -38,7 +37,6 @@ public class ApplyOrCheckin extends ListActivity
 	private Button apply,profile;
 	private ImageView signOut,calander;
 	private TextView checkin;
-	
 	
 	private static final String LEAVES = "leaves";
 	private static final String ID = "id";
@@ -143,13 +141,18 @@ public class ApplyOrCheckin extends ListActivity
 		
 		
 		
-		/*if(bc.getApplyorCheckinJsonValue().isEmpty()){
+		if(bc.getApplyorCheckinJsonValue().isEmpty()){
+			
+			new CheckinDetail().execute();
 			
 		}else{
+			
 			loadedList();
-		}*/
+		}
 		
-		new CheckinDetail().execute();
+		
+		
+		
 	}
 	
 	
@@ -192,7 +195,7 @@ public class ApplyOrCheckin extends ListActivity
 
 				// getting JSON Object
 				// Note that create product url accepts POST method
-				JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_checkin,"GET", params);
+				JSONObject json = jsonParser.makeHttpRequest(GlobalVariables.url_checkin,"GET", params);
 				
 				
 				// check log cat fro response
@@ -205,8 +208,8 @@ public class ApplyOrCheckin extends ListActivity
 					pDialog.dismiss();
 					
 					int temp_length = leaves.length();
-					if(temp_length>3){
-						temp_length=3;
+					if(temp_length>4){
+						temp_length=4;
 					}
 					
 					// looping through All Contacts
@@ -338,6 +341,7 @@ public class ApplyOrCheckin extends ListActivity
 			 * After completing background task Dismiss the progress dialog
 			 * **/
 			protected void onPostExecute(String file_url) {
+				
 				// dismiss the dialog after getting all products
 				pDialog.dismiss();
 				

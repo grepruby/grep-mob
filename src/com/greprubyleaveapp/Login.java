@@ -32,34 +32,23 @@ public class Login extends Activity
 	private Button loginButton;
 	private TextView forgot,signUp,wrongEmail,wrongPassword;
 	private EditText email,password;
-	
 	private String userEmail ;
 	private String userPassword;
 	private String success;
 	private String forgotPassword;
 	private String apiToken;
 	private int responseToken = 0;
-	
-	// Progress Dialog
-	private ProgressDialog pDialog;
 	private static final String TAG = "Login";
-    private static final int DLG_EXAMPLE1 = 0;
+    private static final int DLG = 0;
     private static final int TEXT_ID = 0;
-    
-    JSONParser jsonParser = new JSONParser();
-    
-    private DataBaseHelper myDbHelper = null;
-    
     private static final String TAG_SUCCESS = "success";
     private static final String TOKEN="api_token";
     private static final String NAME="name";
-    
     private String storedEmail;
     private String storedPassword;
-    
-    LoginDataBaseAdapter loginDataBaseAdapter;
-    
-    
+	private ProgressDialog pDialog;
+    private LoginDataBaseAdapter loginDataBaseAdapter;
+    private JSONParser jsonParser = new JSONParser();
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,11 +71,12 @@ public class Login extends Activity
 		
 		loginButton.setOnClickListener(new View.OnClickListener() {
           public void onClick(View view) {
-            	
-        		userEmail = email.getText().toString();
-    			userPassword = password.getText().toString();
+        	  
+        	  
+        		  userEmail = email.getText().toString();
+    			  userPassword = password.getText().toString();
     			
-    			if(userEmail.equals("")){
+    			  if(userEmail.equals("")){
     				
     				wrongEmail.setText("Enter your email address.");
     				
@@ -119,7 +109,7 @@ public class Login extends Activity
 		forgot.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {				
             	
-            	showDialog(DLG_EXAMPLE1);
+            	showDialog(DLG);
 	        	
             }
            });
@@ -150,7 +140,7 @@ public class Login extends Activity
     protected Dialog onCreateDialog(int id) {
  
         switch (id) {
-            case DLG_EXAMPLE1:
+            case DLG:
                 return createExampleDialog();
             default:
                 return null;
@@ -169,7 +159,7 @@ public class Login extends Activity
     protected void onPrepareDialog(int id, Dialog dialog) {
  
         switch (id) {
-            case DLG_EXAMPLE1:
+            case DLG:
                 // Clear the input box.
                 EditText text = (EditText) dialog.findViewById(TEXT_ID);
                 text.setText("");
@@ -236,10 +226,7 @@ public class Login extends Activity
 			pDialog.show();
 		}
 			
-		/**
-		 * Creating product
-		 * */
-		@SuppressWarnings("deprecation")
+		
 		protected String doInBackground(String... args) {
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -250,7 +237,7 @@ public class Login extends Activity
 
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_signin,"POST", params);
+			JSONObject json = jsonParser.makeHttpRequest(GlobalVariables.url_signin,"POST", params);
 			
 			// check log cat fro response
 			Log.d("Create Response", json.toString());
@@ -274,10 +261,7 @@ public class Login extends Activity
 					finish();
 				} else {
 					
-					// failed to signup
-					//alertDilog();
-					//token=0;
-					//System.out.println("------"+success+"-------");
+					//System.out.println("------"+fail+"-------");
 					
 				}
 			} catch (JSONException e) {
@@ -292,7 +276,7 @@ public class Login extends Activity
 			if(responseToken==0){
 				alertDilog();
 			}else{
-				//Toast.makeText(getApplicationContext(), "Response found", Toast.LENGTH_SHORT).show();
+				
 				setupDataBase();
 			}
 		}
@@ -310,11 +294,6 @@ public class Login extends Activity
 	class SendEmail extends AsyncTask<String, String, String> {
 		
 		
-		
-		/**
-		 * Creating product
-		 * */
-		@SuppressWarnings("deprecation")
 		protected String doInBackground(String... args) {
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -323,7 +302,7 @@ public class Login extends Activity
 
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_forgot,"POST", params);
+			JSONObject json = jsonParser.makeHttpRequest(GlobalVariables.url_forgot,"POST", params);
 			
 			// check log cat fro response
 			Log.d("Create Response", json.toString());
@@ -346,10 +325,8 @@ public class Login extends Activity
 					finish();
 				} else {
 					
-					// failed to signup
-					//alertDilog();
-					//token=0;
-					//System.out.println("------"+success+"-------");
+					
+					//System.out.println("------"+failed+"-------");
 					
 				}
 			} catch (JSONException e) {

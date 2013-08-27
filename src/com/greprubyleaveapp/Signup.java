@@ -31,19 +31,16 @@ import android.widget.Toast;
 
 public class Signup extends Activity
 {
-	private EditText uname,email,password,c_password;
+	private EditText uname,email,password,c_password,mobileNumber;
 	private Button submit;
-	
-	JSONParser jsonParser = new JSONParser();
-	
-	
-	
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_ERRORS = "errors";
 	private String server_error;
-	private TextView wrongUname,wrongEmail,wrongPassword,wrongCpassword,logIn;
-	
+	private TextView wrongUname,wrongEmail,wrongPassword,wrongCpassword,wrongMobile,logIn;
 	private int responseToken=0;
+	private ProgressDialog pDialog;
+	private JSONParser jsonParser = new JSONParser();
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +51,13 @@ public class Signup extends Activity
 		email=(EditText)findViewById(R.id.email);
 		password=(EditText)findViewById(R.id.password);
 		c_password=(EditText)findViewById(R.id.c_password);
+		mobileNumber=(EditText)findViewById(R.id.mobile_number);
 		submit=(Button)findViewById(R.id.submit);
 		wrongUname=(TextView)findViewById(R.id.wrong_uname);
 		wrongEmail=(TextView)findViewById(R.id.wrong_email);
 		wrongPassword=(TextView)findViewById(R.id.wrong_password);
 		wrongCpassword=(TextView)findViewById(R.id.wrong_cpassword);
+		wrongMobile=(TextView)findViewById(R.id.wrong_mobile);
 		logIn=(TextView)findViewById(R.id.log_in);
 		
 		
@@ -94,8 +93,15 @@ public class Signup extends Activity
 						}else{
 							wrongCpassword.setText("");
 						}
+						if(mobileNumber.getText().toString().equals("")){
+							token=1;
+							wrongMobile.setText("You can't leave this empty.");
+						}else{
+							wrongMobile.setText("");
+						}
+						
 						if(token==0){
-							new SignupData().execute();
+							 new SignupData().execute();    // comment for some time
 						}
 						
 					}
@@ -112,51 +118,63 @@ public class Signup extends Activity
 		
 	}
 	
-	
-	
-	
-	
 	/**
 	 * Background Async Task to Create new product
 	 * */
 	class SignupData extends AsyncTask<String, String, String> {
 
+		/**
+		 * Before starting background thread Show Progress Dialog
+		 * */
+		@Override
+		protected void onPreExecute() {
+			
+			super.onPreExecute();
+			pDialog = new ProgressDialog(Signup.this);
+			pDialog.setMessage("Please wait...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
+			
+		}
+		
+		
 		
 
 		/**
-		 * Creating product
+		 * Creating new user
 		 * */
 		protected String doInBackground(String... args) {
 			
 			String userName = uname.getText().toString();
 			String userEmail = email.getText().toString();
 			String userPassword = password.getText().toString();
-			//String confirmPassword = c_password.getText().toString();
-			//String mobileNumber = mobile.getText().toString();
+			String confirmPassword = c_password.getText().toString();
+			String mobileNum = mobileNumber.getText().toString();
 
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("user[username]", userName));
 			params.add(new BasicNameValuePair("user[email]", userEmail));
 			params.add(new BasicNameValuePair("user[password]", userPassword));
-			//params.add(new BasicNameValuePair("user[password_confirmation]", confirmPassword));
-			//params.add(new BasicNameValuePair("user[phone]", mobileNumber));
+			params.add(new BasicNameValuePair("user[password_confirmation]", confirmPassword));
+			params.add(new BasicNameValuePair("user[phone]", mobileNum));
 
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_signup,"POST", params);
+			JSONObject json = jsonParser.makeHttpRequest(GlobalVariables.url_signup,"POST", params);
 			
 			// check log cat fro response
 			//Log.d("Create Response", json.toString());/
 			// check for success tag
 			try {
 				String success = json.getString(TAG_SUCCESS);
-				
+				pDialog.dismiss();
 				
 				if (success.equals("true")) {
 					// successfully sign up
 					responseToken=1;
-					Intent i = new Intent(getApplicationContext(), MainActivity.class);
+					Intent i = new Intent(getApplicationContext(), Login.class);
 					startActivity(i);
 					finish();
 				} else {

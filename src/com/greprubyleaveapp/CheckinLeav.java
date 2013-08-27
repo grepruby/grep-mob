@@ -89,14 +89,19 @@ public class CheckinLeav extends ListActivity
 		apiToken = gb.getString("apiToken");
 		uName  = gb.getString("uName");
 		
+		
+		
 		if(bc.getCheckinJsonValue().isEmpty()){
 			new CheckinDetail().execute();
 		}else{
 			loadedJsonData();
 		}
 		
-		previous=(Button)findViewById(R.id.previous);
-		more=(Button)findViewById(R.id.more);
+		
+		
+		
+		//previous=(Button)findViewById(R.id.previous);
+		//more=(Button)findViewById(R.id.more);
 		
 		back=(ImageView)findViewById(R.id.back);
 		back.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +168,7 @@ public class CheckinLeav extends ListActivity
 
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_checkin,"GET", params);
+			JSONObject json = jsonParser.makeHttpRequest(GlobalVariables.url_checkin,"GET", params);
 			
 			
 			// check log cat fro response
@@ -176,9 +181,9 @@ public class CheckinLeav extends ListActivity
 				pDialog.dismiss();
 				
 				int temp_length = leaves.length();
-				if(temp_length>6){
+				/*if(temp_length>6){
 					temp_length=6;
-				}
+				}*/
 				
 				// looping through All Contacts
 				for(int i = 0; i < temp_length; i++){

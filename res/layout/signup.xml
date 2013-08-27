@@ -9,7 +9,7 @@
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:orientation="vertical" >
         
 	<TableLayout android:layout_width="fill_parent"
@@ -37,12 +37,13 @@
         	<EditText
             android:id="@+id/uname"
             android:layout_width="fill_parent"
-            android:layout_height="35dp"
+            android:layout_height="33dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="3dp"
             android:inputType="textEmailAddress"
             android:hint=""
+            android:textSize="12sp"
             android:textCursorDrawable="@drawable/color_cursor"
             android:background="@drawable/backwithborder"
             android:textColor="@android:color/black" >
@@ -74,13 +75,14 @@
         	<EditText
             android:id="@+id/email"
             android:layout_width="fill_parent"
-            android:layout_height="35dp"
+            android:layout_height="33dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/backwithborder"
             android:inputType="textEmailAddress"
             android:hint=""
+            android:textSize="12sp"
             android:textCursorDrawable="@drawable/color_cursor"
             android:textColor="@android:color/black" />
         	
@@ -107,19 +109,19 @@
              android:textColor="#DD4B46" />
         </TableRow>    
         </TableLayout>
-        	<EditText
-            android:id="@+id/password"
-            android:layout_width="fill_parent"
-            android:layout_height="35dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/backwithborder"
-            android:inputType="textPassword"
-            android:hint=""
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:textColor="@android:color/black" >
-            </EditText>
+	        <EditText
+	            android:id="@+id/password"
+	            android:layout_width="fill_parent"
+	            android:layout_height="33dp"
+	            android:layout_marginLeft="20dp"
+	            android:layout_marginRight="20dp"
+	            android:layout_marginTop="5dp"
+	            android:background="@drawable/backwithborder"
+	            android:inputType="textPassword"
+	            android:textSize="12sp"
+	            android:textCursorDrawable="@drawable/color_cursor"
+	            android:textColor="@android:color/black" >
+	           </EditText>
          <TableLayout android:layout_width="fill_parent"
              android:layout_height="wrap_content">
         <TableRow >
@@ -145,66 +147,76 @@
          <EditText
             android:id="@+id/c_password"
             android:layout_width="fill_parent"
-            android:layout_height="35dp"
+            android:layout_height="33dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/backwithborder"
             android:inputType="textPassword"
             android:hint=""
+            android:textSize="12sp"
             android:textCursorDrawable="@drawable/color_cursor"
             android:textColor="@android:color/black" >
         	</EditText>
          
-          <!--   
+     
           <TableLayout android:layout_width="fill_parent"
              android:layout_height="wrap_content">
-        	<TableRow >
-          <EditText
-            android:id="@+id/mobile"   
+	        <TableRow >
+	         <TextView
+	             android:layout_width="fill_parent"
+	             android:layout_height="wrap_content"
+	             android:text="Mobile"
+	             android:textSize="11sp"
+	             android:layout_marginTop="5dp"
+	             android:layout_marginLeft="25dp"
+	             android:textColor="@color/black" />
+            <TextView
+	             android:id="@+id/wrong_mobile"
+	             android:layout_width="fill_parent"
+	             android:layout_height="wrap_content"
+	             android:text=""
+	             android:textSize="11sp"
+	             android:layout_marginTop="5dp"
+	             android:layout_marginLeft="20dp"
+	             android:textColor="#DD4B46" />
+	            </TableRow>    
+        </TableLayout>
+         <EditText
+            android:id="@+id/mobile_number"
             android:layout_width="fill_parent"
-            android:layout_height="35dp"
+            android:layout_height="33dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/backwithborder"
-            android:inputType="phone" 
-            android:hint="Mobile Phone Number"
+            android:hint=""
+            android:textSize="12sp"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:imeOptions="actionDone"
-            android:textColor="@android:color/black">
-            </EditText>
-            <TextView
-             android:id="@+id/wrong_mobile"
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:text=""
-             android:textSize="11sp"
-             android:layout_marginTop="2dp"
-             android:layout_marginLeft="20dp"
-             android:textColor="#DD4B46" />
-            </TableRow>    
-        </TableLayout>
-               -->
+            android:textColor="@android:color/black" >
+        	</EditText>
+        	
+             
             <Button 
 	         		android:id="@+id/submit"    
 	         		android:text="Submit" 
 					android:layout_weight="1" 
 					style="@style/btnStyleBeige"
-					android:layout_marginTop="10dp"
+					android:layout_marginTop="15dp"
 					android:layout_marginLeft="20dp"
 					android:layout_marginRight="20dp"
 					android:layout_width="fill_parent" 
 					android:layout_height="wrap_content">
 	        </Button>
+	        
              <TextView
                      android:id="@+id/log_in"
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
                      android:text="Already has account! Login here"
                      android:textSize="17sp"
-                     android:layout_marginTop="10dp"
-                     android:layout_marginLeft="30dp"
+                     android:layout_marginTop="7dp"
+                     android:layout_marginLeft="33dp"
                      android:autoLink="web"
                      android:textColor="#49bbe9" />
     </LinearLayout>

@@ -258,12 +258,13 @@ public class ApplyLeave extends Activity
 			
 			// getting JSON Object
 			// Note that create product url accepts POST method
-			JSONObject json = jsonParser.makeHttpRequest(BeanClass.url_apply_leave,"POST", params);
+			JSONObject json = jsonParser.makeHttpRequest(GlobalVariables.url_apply_leave,"POST", params);
 			
 			// check log cat fro response
 			Log.d("Create Response", json.toString());
 
 			// check for success tag
+			
 			try {
 				String success = json.getString(TAG_SUCCESS);
 				pDialog.dismiss();
