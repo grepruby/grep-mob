@@ -9,15 +9,15 @@
             android:layout_height="wrap_content"
             android:stretchColumns="0,1"
             android:layout_marginTop="5dp">
-    <TableRow >      
-	    <ImageView 
+    <TableRow >
+	    <ImageView
 	        android:id="@+id/back"
 	        android:src="@drawable/back"
 	      	android:layout_gravity="left"
 	        android:layout_width="65dp"
 	        android:layout_height="25dp"/>
 	   
-		<ImageView 
+		<ImageView
 	    	android:id="@+id/signout" 
 	        android:layout_width="45dp"
 	        android:layout_height="25dp" 
@@ -41,7 +41,7 @@
 				android:layout_width="75dp"
 				android:layout_height="105dp"
 				android:layout_marginLeft="17dp"
-				android:src="@drawable/profile_pic">
+				android:src="@drawable/gr_logo">
 		      </ImageView>
 		      
 		 	 <ImageView
@@ -147,9 +147,8 @@
                      android:layout_marginLeft="10dp"
                      android:textColor="@color/black"
                      />
-		      
           </TableRow>
-           <ImageView 
+           <ImageView
 	           android:layout_width="200dp"
 	           android:layout_height="5dp"
 	           android:layout_marginTop="5dp"
@@ -159,6 +158,7 @@
 		</LinearLayout>
     </LinearLayout>
     <LinearLayout
+            
 		    android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="30dp"
@@ -179,14 +179,76 @@
 		          	android:id="@+id/dob" 
 					 android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
-                     android:text="08/08/1970"
+                     android:text="08/08/2010"
                      android:textSize="13sp"
                      android:layout_marginLeft="10dp"
                      android:textColor="@color/black"
                      />
+		      <TextView 
+		          	android:id="@+id/edit_dob" 
+					 android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:text="@string/edit"
+                     android:textSize="12sp"
+                     android:textColor="@color/black"
+                     />
 		      
-          </TableRow >
-             <ImageView 
+          </TableRow>
+          <LinearLayout 
+              android:id="@+id/linear1"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+			  android:orientation="vertical"
+			  android:visibility="gone"
+              >
+		       <LinearLayout 
+	              android:layout_width="fill_parent"
+	              android:layout_height="wrap_content"
+				  android:orientation="horizontal"
+				  android:layout_margin="10dp"
+	              >
+		     <TextView
+                    android:id="@+id/change_dob_text"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:textColor="@android:color/black"
+                    android:text="dd/mm/yyyy" />
+
+              <ImageView
+                    android:id="@+id/change_dob_btn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/calendar_icon" >
+               </ImageView>
+               </LinearLayout>
+		      <LinearLayout 
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+			  android:orientation="horizontal"
+              >
+		      <Button 
+		          android:id="@+id/change_dob_button"
+		          android:layout_width="fill_parent"
+              	  android:layout_height="40dp"
+              	  android:layout_weight="1" 
+              	  android:text="Save Changes"
+              	  android:textSize="12sp"
+              	  android:layout_marginLeft="30dp"
+		          />
+		       <Button 
+		          android:id="@+id/change_dob_button"
+		          android:layout_width="fill_parent"
+              	  android:layout_height="40dp"
+              	  android:layout_weight="1" 
+              	  android:text="Cancel"
+              	  android:textSize="12sp"
+              	  android:layout_marginRight="30dp"
+		          />
+              </LinearLayout>
+          </LinearLayout>
+         
+             <ImageView
 	           android:layout_width="320dp"
 	           android:layout_height="5dp"
 	           android:layout_marginTop="5dp"
@@ -208,12 +270,20 @@
                      />
 		      <TextView 
 		          	android:id="@+id/l_address" 
-					 android:layout_width="50dp"
+					 android:layout_width="130dp"
                      android:layout_height="wrap_content"
-                     android:text="Bhanwarkua, Indore."
+                     android:text="Tower 61, Bhanwarkua, Indore."
                      android:textSize="13sp"
-                     android:lines="2"
+                     android:lines="3"
                      android:layout_marginLeft="10dp"
+                     android:textColor="@color/black"
+                     />
+		      <TextView 
+		          	android:id="@+id/edit_local_add" 
+					 android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:text="@string/edit"
+                     android:textSize="12sp"
                      android:textColor="@color/black"
                      />
 		      
@@ -221,7 +291,6 @@
              <ImageView 
 	           android:layout_width="320dp"
 	           android:layout_height="5dp"
-	           android:layout_marginTop="5dp"
 	           android:src="@drawable/middle_row"
 	          />
           <TableRow
@@ -235,27 +304,34 @@
                      android:text="Permanent Address : "
                      android:textStyle="bold"
                      android:textSize="13sp"
-                      android:lines="2"
+                     android:lines="2"
                      android:layout_marginLeft="10dp"
                      android:textColor="@color/black"
                      />
 		      <TextView
-		          	android:id="@+id/p_address" 
+		          	 android:id="@+id/p_address" 
+					 android:layout_width="130dp"
+                     android:layout_height="wrap_content"
+                     android:text="Tower 61, Bhanwarkua, Indore."
+                     android:textSize="13sp"
+                     android:lines="3"
+                     android:layout_marginLeft="10dp"
+                     android:textColor="@color/black"
+                     />
+		      <TextView 
+		          	android:id="@+id/edit_parmanent_add" 
 					 android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
-                     android:text="Bhanwarkua, Kolkata"
-                     android:textSize="13sp"
-                     android:layout_marginLeft="10dp"
+                     android:text="@string/edit"
+                     android:textSize="12sp"
                      android:textColor="@color/black"
                      />
           </TableRow >
              <ImageView 
 	           android:layout_width="320dp"
 	           android:layout_height="5dp"
-	           android:layout_marginTop="5dp"
 	           android:src="@drawable/middle_row"
 	          />
 		 </TableLayout>    
-		     
     	</LinearLayout>
 </LinearLayout>

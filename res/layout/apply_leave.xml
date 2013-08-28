@@ -29,24 +29,20 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="90dp"
         android:orientation="vertical" >
 
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp" >
+            android:layout_marginLeft="10dp" >
 
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
+            <TableRow >
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="80dp"
                     android:text="Welcome"
                     android:textColor="@android:color/black"
                     android:textSize="14sp" />
@@ -65,7 +61,7 @@
                 android:id="@+id/tableRow2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" >
+                android:layout_marginTop="10dp" >
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -172,7 +168,7 @@
 	            <RadioButton
 	                android:id="@+id/full_day"
 	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
+	                android:layout_height="35dp"
 	                android:checked="true"
 	                android:textColor="@android:color/black"
 	                android:textSize="13sp"
@@ -181,7 +177,7 @@
 	            <RadioButton
 	                android:id="@+id/f_half_day"
 	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
+	                android:layout_height="35dp"
 	                android:textColor="@android:color/black"
 	                android:textSize="13sp"
 	                android:text="Half day(10am-3pm)" />
@@ -189,18 +185,18 @@
 	            <RadioButton
 	                android:id="@+id/s_half_day"
 	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
+	                android:layout_height="35dp"
 	                android:textColor="@android:color/black"
 	                android:textSize="13sp"
 	                android:text="Half day(3pm-7pm)" />
 	         </RadioGroup>
 		</TableRow>
         </TableLayout>
-         <EditText
+      <!--    <EditText
                     android:id="@+id/reason"
                     android:background="@drawable/backwithborder"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:textSize="13sp"
                     android:hint=" Reason "
                     android:inputType="textMultiLine" 
@@ -211,9 +207,24 @@
 				    android:layout_height="wrap_content" 
 				    android:layout_width="280dp" 
 				    android:scrollbars="vertical" 
-                    android:textCursorDrawable="@drawable/color_cursor"
                     android:textColor="@android:color/black" >
-                </EditText>
+                </EditText> -->
+                <EditText 
+                     android:id="@+id/reason"
+                     android:layout_width="fill_parent"
+                     android:layout_height="60dp"
+                     android:layout_marginLeft="20dp"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginRight="20dp"
+                     android:imeOptions="actionDone"
+                     android:inputType="textImeMultiLine"
+                     android:hint=" Reason "
+                     android:background="@drawable/backwithborder"
+                     android:lines="2" 
+				     android:minLines="2" 
+				     android:gravity="top|left" 
+				     android:maxLines="4" 
+                    />
     </LinearLayout>
     <RelativeLayout
         android:layout_width="fill_parent"
