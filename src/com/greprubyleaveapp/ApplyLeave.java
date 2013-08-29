@@ -18,7 +18,9 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -37,7 +39,7 @@ public class ApplyLeave extends Activity
 	private EditText reason;
 	private RadioGroup radioGroup;
 	private RadioButton radioButton,fullDay,fhalfDay,shalfDay;
-	private ImageView leaveFromButton,leaveUntilButton,back;
+	private ImageView leaveFromButton,leaveUntilButton,back,signOut;
 	
     JSONParser jsonParser = new JSONParser();
 	
@@ -59,6 +61,8 @@ public class ApplyLeave extends Activity
 	private int selectedId;
 	
 	private int responseToken = 0;
+	
+	private float x1,x2;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +89,9 @@ public class ApplyLeave extends Activity
 		fhalfDay = (RadioButton)findViewById(R.id.f_half_day);
 		shalfDay = (RadioButton)findViewById(R.id.s_half_day);
 		
-		Bundle gb  = this.getIntent().getExtras();
-		apiToken = gb.getString("apiToken");
-		uName  = gb.getString("uName");
+		uName = BeanClass.getUserName();
+		apiToken = BeanClass.getApiToken();
+		
 		name.setText(uName);
 		
 		radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -124,17 +128,23 @@ public class ApplyLeave extends Activity
 		back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	
-            	Bundle pb = new Bundle();
-            	pb.putString("uName", uName);
-            	pb.putString("apiToken", apiToken);
             	
             	Intent i = new Intent(view.getContext(), ApplyOrCheckin.class);
-            	i.putExtras(pb);
 	        	startActivity(i);
 	        	finish();
+	        	overridePendingTransition( R.anim.slide_in_right, R.anim.slide_out_right );
 	        	
             }
            });
+		 signOut=(ImageView)findViewById(R.id.signout);
+			signOut.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View view) {
+	            	Intent i = new Intent(view.getContext(), Login.class); 
+		        	startActivity(i);
+		        	finish();
+		        	
+	            }
+	           });
 		   leaveFromButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	
@@ -206,9 +216,6 @@ public class ApplyLeave extends Activity
 	
 	
 	
-	
-	
-	
 	/**
 	 * Background Async Task to Create new leave
 	 * */
@@ -274,12 +281,9 @@ public class ApplyLeave extends Activity
 					
 					responseToken=1;
 
-	            	Bundle pb = new Bundle();
-	            	pb.putString("uName", uName);
-	            	pb.putString("apiToken", apiToken);
+	            	
 	            	
 	            	Intent i = new Intent(getApplicationContext(), ApplyOrCheckin.class);
-	            	i.putExtras(pb);
 		        	startActivity(i);
 		        	finish();
 					
@@ -331,7 +335,7 @@ void alertDilog(String msg){
 		text.setTextColor(Color.parseColor("#000000"));
 		ImageView image = (ImageView) dialog.findViewById(R.id.image);
 		image.setImageResource(R.drawable.ic_launcher);
-
+		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
 		// if button is clicked, close the custom dialog
 		dialogButton.setOnClickListener(new View.OnClickListener() {
@@ -345,9 +349,39 @@ void alertDilog(String msg){
 		dialog.show();
 
 
-}
+ }
 	
-	
-	
+		public boolean onTouchEvent(MotionEvent touchevent)
+		{
+		             switch (touchevent.getAction())
+		             {
+		                    // when user first touches the screen we get x and y coordinate
+		                     case MotionEvent.ACTION_DOWN:
+		                     {
+		                         x1 = touchevent.getX();
+		                         break;
+		                    }
+		                     case MotionEvent.ACTION_UP:
+		                     {
+		                         x2 = touchevent.getX();
+		
+		                         //if left to right sweep event on screen
+		                         if (x1 < x2)
+		                         {
+		                        	
+		                         	
+		                         	Intent i = new Intent(this, ApplyOrCheckin.class);
+		                         	startActivity(i);
+		             	        	finish();
+		             	        	overridePendingTransition( R.anim.slide_in_right, R.anim.slide_out_right );
+		             	        	
+		                          }
+		                 
+		                         break;
+		                     }
+		             }
+		             return false;
+		}
+			
 	
 	}

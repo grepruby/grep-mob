@@ -7,15 +7,17 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LeaveDetail  extends Activity {
 	
 	
 	
-	ImageView back;
+	ImageView back,signOut;
 	private String apiToken;
 	private String uName;
 	
@@ -26,6 +28,7 @@ public class LeaveDetail  extends Activity {
 	private static final String REASON = "reason";
 	private static final String STATUS = "status";
 	private String isComingFrom="";
+	private float x1, x2;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,18 +81,14 @@ public class LeaveDetail  extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	
-            	Bundle pb = new Bundle();
-            	pb.putString("uName", uName);
-            	pb.putString("apiToken", apiToken);
+            	
             	
             	if(isComingFrom.equals("Checkin")){
             	Intent i = new Intent(view.getContext(), CheckinLeav.class); 	
-            	i.putExtras(pb);
 	        	startActivity(i);
 	        	overridePendingTransition( R.anim.slide_in_right, R.anim.slide_out_right );
             	}else{
             		Intent i = new Intent(view.getContext(), ApplyOrCheckin.class); 	
-                	i.putExtras(pb);
     	        	startActivity(i);
     	        	overridePendingTransition( R.anim.slide_in_right, R.anim.slide_out_right );
             	}
@@ -99,6 +98,62 @@ public class LeaveDetail  extends Activity {
             }
            });
         
+        signOut=(ImageView)findViewById(R.id.signout);
+		signOut.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+            	Intent i = new Intent(view.getContext(), Login.class); 
+	        	startActivity(i);
+	        	finish();
+	        	
+            }
+           });
+        
        
     }
+	
+	
+	public boolean onTouchEvent(MotionEvent touchevent)
+    {
+                 switch (touchevent.getAction())
+                 {
+                        // when user first touches the screen we get x and y coordinate
+                         case MotionEvent.ACTION_DOWN:
+                         {
+                             x1 = touchevent.getX();
+                             break;
+                        }
+                         case MotionEvent.ACTION_UP:
+                         {
+                             x2 = touchevent.getX();
+
+                             //if left to right sweep event on screen
+                             if (x1 < x2)
+                             {
+                             	
+                             	if(isComingFrom.equals("Checkin")){
+                             	Intent i = new Intent(this, CheckinLeav.class); 
+                 	        	startActivity(i);
+                 	        	overridePendingTransition( R.anim.slide_in_right, R.anim.slide_out_right );
+                             	}else{
+                             		Intent i = new Intent(this, ApplyOrCheckin.class); 	
+                     	        	startActivity(i);
+                     	        	overridePendingTransition( R.anim.slide_in_right, R.anim.slide_out_right );
+                             	}
+                             	
+                 	        	finish();
+                            	 
+                            	 
+                              }
+                     
+                             break;
+                         }
+                 }
+                 return false;
+    }
+	
+	
+	
+	
+	
+	
 }

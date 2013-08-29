@@ -38,8 +38,8 @@ public class CalendarView extends Activity {
 	private String apiToken;
 	private String uName;
 
-	float x1,x2;
-    float y1, y2;
+	//private float x1,x2;
+    private float y1, y2;
     
   
     
@@ -47,9 +47,7 @@ public class CalendarView extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calendar);
 		
-		Bundle gb  = this.getIntent().getExtras();
-		apiToken = gb.getString("apiToken");
-		uName  = gb.getString("uName");
+		
 		
 		Locale.setDefault( Locale.US );
 		month = (GregorianCalendar) GregorianCalendar.getInstance();
@@ -211,13 +209,13 @@ public class CalendarView extends Activity {
                         // when user first touches the screen we get x and y coordinate
                          case MotionEvent.ACTION_DOWN:
                          {
-                             x1 = touchevent.getX();
+                            // x1 = touchevent.getX();
                              y1 = touchevent.getY();
                              break;
                         }
                          case MotionEvent.ACTION_UP:
                          {
-                             x2 = touchevent.getX();
+                           //  x2 = touchevent.getX();
                              y2 = touchevent.getY(); 
 
                           /*   //if left to right sweep event on screen
@@ -243,16 +241,11 @@ public class CalendarView extends Activity {
                              {
                                //  Toast.makeText(this, "Down to UP Swap Performed", Toast.LENGTH_LONG).show();
                                  
-                                Bundle pb = new Bundle();
-                                pb.putString("uName", uName);
-                             	pb.putString("apiToken", apiToken);
+                               
                              	Intent i = new Intent(this, ApplyOrCheckin.class); 
-                             	i.putExtras(pb);
                  	        	startActivity(i);
                  	        	overridePendingTransition( R.anim.slide_in_up, R.anim.slide_out_up );
                  	        	finish();
-                 	        	
-                                 
                                  
                                  
                               }

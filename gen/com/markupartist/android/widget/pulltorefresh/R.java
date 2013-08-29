@@ -8,26 +8,26 @@ package com.markupartist.android.widget.pulltorefresh;
 
 public final class R {
 	public static final class drawable {
-		public static final int detail = 0x7f02000e;
-		public static final int ic_pulltorefresh_arrow = 0x7f020017;
-		public static final int icon = 0x7f020018;
-		public static final int pull_to_refresh_header_background = 0x7f020025;
+		public static final int detail = 0x7f020010;
+		public static final int ic_pulltorefresh_arrow = 0x7f02001a;
+		public static final int icon = 0x7f02001b;
+		public static final int pull_to_refresh_header_background = 0x7f020027;
 	}
 	public static final class id {
-		public static final int leave_type = 0x7f0a002d;
-		public static final int no_of_days = 0x7f0a002c;
-		public static final int pull_to_refresh_header = 0x7f0a003d;
-		public static final int pull_to_refresh_image = 0x7f0a003f;
-		public static final int pull_to_refresh_progress = 0x7f0a003e;
-		public static final int pull_to_refresh_text = 0x7f0a0040;
-		public static final int pull_to_refresh_updated_at = 0x7f0a0041;
-		public static final int reason = 0x7f0a0013;
-		public static final int start_date_id = 0x7f0a002a;
-		public static final int status = 0x7f0a002e;
+		public static final int leave_type = 0x7f0a0029;
+		public static final int no_of_days = 0x7f0a0028;
+		public static final int pull_to_refresh_header = 0x7f0a0043;
+		public static final int pull_to_refresh_image = 0x7f0a0045;
+		public static final int pull_to_refresh_progress = 0x7f0a0044;
+		public static final int pull_to_refresh_text = 0x7f0a0046;
+		public static final int pull_to_refresh_updated_at = 0x7f0a0047;
+		public static final int reason = 0x7f0a0011;
+		public static final int start_date_id = 0x7f0a0026;
+		public static final int status = 0x7f0a002a;
 	}
 	public static final class layout {
-		public static final int list_item = 0x7f030008;
-		public static final int pull_to_refresh_header = 0x7f03000b;
+		public static final int list_item = 0x7f030007;
+		public static final int pull_to_refresh_header = 0x7f03000a;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f050000;

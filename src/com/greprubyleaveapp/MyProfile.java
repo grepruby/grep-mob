@@ -8,8 +8,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 public class MyProfile extends Activity {
@@ -17,18 +18,37 @@ public class MyProfile extends Activity {
 	
 	private static int RESULT_LOAD_IMAGE = 1;
 	
-	private String apiToken;
-	private String uName;
-	private ImageView back,signOut;
+	private String uName,uEmail;
+	private ImageView back,signOut,editCancel,editSave;
+	private TextView userName,userEmail,userPhone,userDob,localAddress,parmanentAddress,editDob;
+	private LinearLayout editLayout1;
+	
+	
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_profile);
         
-        Intent in = getIntent();
-        uName  = in.getStringExtra("uName");
-        apiToken  = in.getStringExtra("apiToken");
         
+        userName = (TextView)findViewById(R.id.name);
+        userEmail = (TextView)findViewById(R.id.email);
+        userPhone = (TextView)findViewById(R.id.phone);
+        userDob = (TextView)findViewById(R.id.dob);
+        localAddress = (TextView)findViewById(R.id.l_address);
+        parmanentAddress = (TextView)findViewById(R.id.p_address);
+        editDob = (TextView)findViewById(R.id.edit_dob);
+        editSave = (ImageView)findViewById(R.id.edit_save);
+        editCancel = (ImageView)findViewById(R.id.edit_cancel);
+        editLayout1 = (LinearLayout)findViewById(R.id.linear1);
+        
+        uName = BeanClass.getUserName();
+		BeanClass.getApiToken();
+		uEmail = BeanClass.getEmail();
+		
+		userName.setText(uName);
+		userEmail.setText(uEmail);
+		
         
         TextView buttonLoadImage = (TextView) findViewById(R.id.buttonLoadPicture);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
@@ -39,8 +59,7 @@ public class MyProfile extends Activity {
 				Intent i = new Intent(
 						Intent.ACTION_PICK,
 						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-				
-				startActivityForResult(i, RESULT_LOAD_IMAGE);
+						startActivityForResult(i, RESULT_LOAD_IMAGE);
 			}
 		});
         
@@ -58,13 +77,8 @@ public class MyProfile extends Activity {
 	        back.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View view) {
 	            	
-	            	Bundle pb = new Bundle();
-	            	pb.putString("uName", uName);
-	            	pb.putString("apiToken", apiToken);
 	            	
-	            	
-	            		Intent i = new Intent(view.getContext(), ApplyOrCheckin.class); 	
-	                	i.putExtras(pb);
+	            		Intent i = new Intent(view.getContext(), ApplyOrCheckin.class); 
 	    	        	startActivity(i);
 	    	        	overridePendingTransition( R.anim.slide_in_right, R.anim.slide_out_right );
 	            	
@@ -73,6 +87,33 @@ public class MyProfile extends Activity {
 		        	
 	            }
 	           });
+	        editDob.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View view) {
+	            	
+	            	editDob.setVisibility(View.GONE);
+	            	editLayout1.setVisibility(View.VISIBLE);
+	        	
+            }
+           });
+	        
+	       editCancel.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View view) {
+	            	
+	            	
+	            	editLayout1.setVisibility(View.GONE);
+	            	editDob.setVisibility(View.VISIBLE);
+	        	
+            }
+           });
+	       editSave.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View view) {
+	            	
+	            	
+	            	editLayout1.setVisibility(View.GONE);
+	            	editDob.setVisibility(View.VISIBLE);
+	        	
+           }
+          });
     }
     
     

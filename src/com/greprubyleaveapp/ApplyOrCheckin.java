@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -60,16 +61,19 @@ public class ApplyOrCheckin extends ListActivity
 	// Progress Dialog
 	private ProgressDialog pDialog;
 	
-	BeanClass bc = new BeanClass();
+	private BeanClass bc = new BeanClass();
+	
+	private float x1,x2;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.apply_or_checkin);
-		Bundle gb  = this.getIntent().getExtras();
-		apiToken = gb.getString("apiToken");
-		uName  = gb.getString("uName");
+		
+	
+		uName = bc.getUserName();
+		apiToken = bc.getApiToken();
 		
 		//String answer = String.valueOf(apiToken);
     	//Toast.makeText(getApplicationContext(), uName, Toast.LENGTH_LONG).show();
@@ -84,10 +88,10 @@ public class ApplyOrCheckin extends ListActivity
             public void onClick(View view) {
             	
             	
-            	Intent i = new Intent(view.getContext(), ApplyLeave.class); 	
-            	i.putExtras(pb);
+            	Intent i = new Intent(view.getContext(), ApplyLeave.class); 
 	        	startActivity(i);
 	        	finish();
+	        	overridePendingTransition( R.anim.slide_in_left, R.anim.slide_out_left );
 	        	
             }
            });
@@ -96,9 +100,9 @@ public class ApplyOrCheckin extends ListActivity
             public void onClick(View view) {
             	
             	Intent i = new Intent(view.getContext(), CheckinLeav.class); 	
-            	i.putExtras(pb);
 	        	startActivity(i);
 	        	finish();
+	        	overridePendingTransition( R.anim.slide_in_left, R.anim.slide_out_left );
 	        	
             }
            });
@@ -106,7 +110,6 @@ public class ApplyOrCheckin extends ListActivity
 		signOut.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	Intent i = new Intent(view.getContext(), Login.class); 
-            	i.putExtras(pb);
 	        	startActivity(i);
 	        	finish();
 	        	
@@ -118,7 +121,6 @@ public class ApplyOrCheckin extends ListActivity
             	
             	
             	Intent i = new Intent(view.getContext(), CalendarView.class); 	
-            	i.putExtras(pb);
 	        	startActivity(i);
 	        	overridePendingTransition( R.anim.slide_in_down, R.anim.slide_out_down);
 	        	finish();
@@ -130,16 +132,12 @@ public class ApplyOrCheckin extends ListActivity
 		profile.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	Intent i = new Intent(view.getContext(), MyProfile.class); 
-            	i.putExtras(pb);
 	        	startActivity(i);
 	        	finish();
+	        	overridePendingTransition( R.anim.slide_in_left, R.anim.slide_out_left );
 	        	
             }
            });
-		
-		
-		
-		
 		
 		if(bc.getApplyorCheckinJsonValue().isEmpty()){
 			
@@ -493,10 +491,39 @@ public class ApplyOrCheckin extends ListActivity
 							
 				}
 			});
-
-		
-			
 			
 		}
+		
+		public boolean onTouchEvent(MotionEvent touchevent)
+	    {
+	                 switch (touchevent.getAction())
+	                 {
+	                        // when user first touches the screen we get x and y coordinate
+	                         case MotionEvent.ACTION_DOWN:
+	                         {
+	                             x1 = touchevent.getX();
+	                             break;
+	                        }
+	                         case MotionEvent.ACTION_UP:
+	                         {
+	                             x2 = touchevent.getX();
+
+	                             //if left to right sweep event on screen
+	                             if (x2 < x1)
+	                             {
+	                            	
+	                            	 
+	                            	Intent i = new Intent(this, ApplyLeave.class); 	
+	                 	        	startActivity(i);
+	                 	        	finish();
+	                 	        	overridePendingTransition( R.anim.slide_in_left, R.anim.slide_out_left );
+	                 	        	
+	                              }
+	                     
+	                             break;
+	                         }
+	                 }
+	                 return false;
+	    }
 		
 }

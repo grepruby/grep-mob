@@ -4,334 +4,345 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="@drawable/gr_image" >
-    <TableLayout 
-    		android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="0,1"
-            android:layout_marginTop="5dp">
-    <TableRow >
-	    <ImageView
-	        android:id="@+id/back"
-	        android:src="@drawable/back"
-	      	android:layout_gravity="left"
-	        android:layout_width="65dp"
-	        android:layout_height="25dp"/>
-	   
-		<ImageView
-	    	android:id="@+id/signout" 
-	        android:layout_width="45dp"
-	        android:layout_height="25dp" 
-	        android:layout_gravity="right"
-	        android:src="@drawable/log_out"/>
-	</TableRow>  
-</TableLayout>
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:orientation="horizontal" >
-
-       <RelativeLayout
-        android:layout_width="110dp"
-        android:layout_height="wrap_content">
-         	 <ImageView
-				android:id="@+id/imgView"
-				android:layout_marginTop="15dp"
-				android:layout_width="75dp"
-				android:layout_height="105dp"
-				android:layout_marginLeft="17dp"
-				android:src="@drawable/gr_logo">
-		      </ImageView>
-		      
-		 	 <ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="0dp"
-				android:src="@drawable/vector_frame">
-		      </ImageView>
-			<TextView
-                     android:id="@+id/buttonLoadPicture"
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="Tap to change"
-                     android:layout_marginTop="130dp"
-                     android:textSize="12sp"
-                     android:layout_marginLeft="15dp"
-                     android:autoLink="web"
-                     android:textColor="#49bbe9" />
-		</RelativeLayout>
-		 <LinearLayout
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_marginTop="40dp"
-		        android:orientation="vertical" >
-			<TableLayout android:layout_width="fill_parent"
-             			 android:layout_height="wrap_content">
-        	<TableRow>
-		      <TextView 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="Name : "
-                     android:textStyle="bold"
-                     android:textSize="13sp"
-                     android:layout_marginLeft="10dp"
-                     android:textColor="@color/black"
-                     />
-		      <TextView 
-		          	android:id="@+id/name" 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="Parneeti Chopda"
-                     android:textSize="13sp"
-                     android:layout_marginLeft="10dp"
-                     android:textColor="@color/black"
-                     />
-		      
-          </TableRow >
-             <ImageView 
-	           android:layout_width="200dp"
-	           android:layout_height="5dp"
-	           android:layout_marginTop="5dp"
-	           android:src="@drawable/middle_row"
-	          />
-          <TableRow
-               	 android:layout_width="fill_parent"
-        		 android:layout_height="wrap_content"
-        		 android:layout_marginTop="5dp">
-		      <TextView 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="Email : "
-                     android:textStyle="bold"
-                     android:textSize="13sp"
-                     android:layout_marginLeft="10dp"
-                     android:textColor="@color/black"
-                     />
-		      <TextView 
-		          	android:id="@+id/email" 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="parneeti@gmail.com"
-                     android:textSize="13sp"
-                     android:layout_marginLeft="10dp"
-                     android:textColor="@color/black"
-                     />
-		      
-          </TableRow>
-           <ImageView 
-	           android:layout_width="200dp"
-	           android:layout_height="5dp"
-	           android:layout_marginTop="5dp"
-	           android:src="@drawable/middle_row"
-	          />
-           <TableRow
-               	 android:layout_width="fill_parent"
-        		 android:layout_height="wrap_content"
-        		 android:layout_marginTop="5dp">
-		      <TextView 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="Phone: "
-                     android:textStyle="bold"
-                     android:textSize="13sp"
-                     android:layout_marginLeft="10dp"
-                     android:textColor="@color/black"
-                     />
-		      <TextView 
-		          	android:id="@+id/phone" 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="9090909090"
-                     android:textSize="13sp"
-                     android:layout_marginLeft="10dp"
-                     android:textColor="@color/black"
-                     />
-          </TableRow>
-           <ImageView
-	           android:layout_width="200dp"
-	           android:layout_height="5dp"
-	           android:layout_marginTop="5dp"
-	           android:src="@drawable/middle_row"
-	          />
-        </TableLayout>
-		</LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-            
-		    android:layout_width="fill_parent"
+    
+	    <TableLayout 
+	    		android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:stretchColumns="0,1"
+	            android:layout_marginTop="5dp">
+	    		<TableRow >
+				    <ImageView
+				        android:id="@+id/back"
+				        android:src="@drawable/back"
+				      	android:layout_gravity="left"
+				        android:layout_width="65dp"
+				        android:layout_height="25dp"/>
+					<ImageView
+				    	android:id="@+id/signout" 
+				        android:layout_width="45dp"
+				        android:layout_height="25dp" 
+				        android:layout_gravity="right"
+				        android:src="@drawable/log_out"/>
+				</TableRow>  
+		</TableLayout>
+	
+	    <LinearLayout
+	        android:id="@+id/linearLayout1"
+	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginTop="30dp"
-	        android:orientation="vertical">
-        <TableLayout android:layout_width="fill_parent"
-             		 android:layout_height="wrap_content">
-        	<TableRow>
-		      <TextView 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="DOB : "
-                     android:textStyle="bold"
-                     android:textSize="13sp"
-                     android:layout_marginLeft="100dp"
-                     android:textColor="@color/black"
-                     />
-		      <TextView 
-		          	android:id="@+id/dob" 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="08/08/2010"
-                     android:textSize="13sp"
-                     android:layout_marginLeft="10dp"
-                     android:textColor="@color/black"
-                     />
-		      <TextView 
-		          	android:id="@+id/edit_dob" 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="@string/edit"
-                     android:textSize="12sp"
-                     android:textColor="@color/black"
-                     />
-		      
-          </TableRow>
-          <LinearLayout 
-              android:id="@+id/linear1"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-			  android:orientation="vertical"
-			  android:visibility="gone"
-              >
-		       <LinearLayout 
-	              android:layout_width="fill_parent"
+	        android:layout_marginTop="80dp"
+	        android:orientation="horizontal" >
+	
+			       <RelativeLayout
+			        android:layout_width="110dp"
+			        android:layout_height="wrap_content">
+			         	 <ImageView
+							android:id="@+id/imgView"
+							android:layout_marginTop="15dp"
+							android:layout_width="75dp"
+							android:layout_height="105dp"
+							android:layout_marginLeft="17dp"
+							android:src="@drawable/gr_logo">
+					      </ImageView>
+					      
+					 	 <ImageView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="0dp"
+							android:src="@drawable/vector_frame">
+					      </ImageView>
+						  <TextView
+			                     android:id="@+id/buttonLoadPicture"
+			                     android:layout_width="fill_parent"
+			                     android:layout_height="wrap_content"
+			                     android:text="Tap to change"
+			                     android:layout_marginTop="130dp"
+			                     android:textSize="12sp"
+			                     android:layout_marginLeft="15dp"
+			                     android:autoLink="web"
+			                     android:textColor="#49bbe9" />
+					</RelativeLayout>
+					
+			        <LinearLayout
+					        android:layout_width="fill_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginTop="40dp"
+					        android:orientation="vertical" >
+						<TableLayout android:layout_width="fill_parent"
+			             			 android:layout_height="wrap_content">
+					        	<TableRow>
+								      <TextView 
+											 android:layout_width="fill_parent"
+						                     android:layout_height="wrap_content"
+						                     android:text="Name : "
+						                     android:textStyle="bold"
+						                     android:textSize="13sp"
+						                     android:layout_marginLeft="10dp"
+						                     android:textColor="@color/black"
+						                     />
+								      <TextView 
+								          	android:id="@+id/name" 
+											 android:layout_width="fill_parent"
+						                     android:layout_height="wrap_content"
+						                     android:text="Parneeti Chopda"
+						                     android:textSize="13sp"
+						                     android:layout_marginLeft="10dp"
+						                     android:textColor="@color/black"
+						                     />
+					           </TableRow>
+						             <ImageView
+							           android:layout_width="200dp"
+							           android:layout_height="5dp"
+							           android:layout_marginTop="5dp"
+							           android:src="@drawable/middle_row"
+							          />
+					          <TableRow
+					               	 android:layout_width="fill_parent"
+					        		 android:layout_height="wrap_content"
+					        		 android:layout_marginTop="5dp">
+								      <TextView 
+											 android:layout_width="fill_parent"
+						                     android:layout_height="wrap_content"
+						                     android:text="Email : "
+						                     android:textStyle="bold"
+						                     android:textSize="13sp"
+						                     android:layout_marginLeft="10dp"
+						                     android:textColor="@color/black"
+						                     />
+								      <TextView 
+								          	android:id="@+id/email" 
+											 android:layout_width="fill_parent"
+						                     android:layout_height="wrap_content"
+						                     android:text="parneeti@gmail.com"
+						                     android:textSize="13sp"
+						                     android:layout_marginLeft="10dp"
+						                     android:textColor="@color/black"
+						                     />
+							      
+					          </TableRow>
+						           <ImageView 
+							           android:layout_width="200dp"
+							           android:layout_height="5dp"
+							           android:layout_marginTop="5dp"
+							           android:src="@drawable/middle_row"
+							          />
+					          <TableRow
+					               	 android:layout_width="fill_parent"
+					        		 android:layout_height="wrap_content"
+					        		 android:layout_marginTop="5dp">
+								      <TextView 
+											 android:layout_width="fill_parent"
+						                     android:layout_height="wrap_content"
+						                     android:text="Phone: "
+						                     android:textStyle="bold"
+						                     android:textSize="13sp"
+						                     android:layout_marginLeft="10dp"
+						                     android:textColor="@color/black"
+						                     />
+								      <TextView 
+								          	android:id="@+id/phone" 
+											 android:layout_width="fill_parent"
+						                     android:layout_height="wrap_content"
+						                     android:text="9090909090"
+						                     android:textSize="13sp"
+						                     android:layout_marginLeft="10dp"
+						                     android:textColor="@color/black"
+						                     />
+					          </TableRow>
+						           <ImageView
+							           android:layout_width="200dp"
+							           android:layout_height="5dp"
+							           android:layout_marginTop="5dp"
+							           android:src="@drawable/middle_row" />
+			    </TableLayout>
+			</LinearLayout>
+	    </LinearLayout>
+	   
+	    
+	    <LinearLayout
+			    android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="30dp"
+		        android:orientation="vertical">
+	        <TableLayout  android:layout_width="fill_parent"
+	             		 android:layout_height="wrap_content">
+	          
+	          <LinearLayout 
+	              android:layout_width="wrap_content"
 	              android:layout_height="wrap_content"
 				  android:orientation="horizontal"
-				  android:layout_margin="10dp"
+				  android:layout_marginLeft="50dp"
 	              >
-		     <TextView
-                    android:id="@+id/change_dob_text"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="100dp"
-                    android:textColor="@android:color/black"
-                    android:text="dd/mm/yyyy" />
-
-              <ImageView
-                    android:id="@+id/change_dob_btn"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/calendar_icon" >
-               </ImageView>
-               </LinearLayout>
-		      <LinearLayout 
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-			  android:orientation="horizontal"
-              >
-		      <Button 
-		          android:id="@+id/change_dob_button"
-		          android:layout_width="fill_parent"
-              	  android:layout_height="40dp"
-              	  android:layout_weight="1" 
-              	  android:text="Save Changes"
-              	  android:textSize="12sp"
-              	  android:layout_marginLeft="30dp"
+			       
+					     <TextView
+					            android:id="@+id/dob"
+			                    android:layout_width="wrap_content"
+			                    android:layout_height="wrap_content"
+			                    android:textColor="@android:color/black"
+			                    android:textStyle="bold"
+			                    android:text="DOB : " />
+					     <TextView
+			                    android:id="@+id/change_dob_text"
+			                    android:layout_width="wrap_content"
+			                    android:layout_height="wrap_content"
+			                    android:layout_marginLeft="10dp"
+			                    android:textColor="@android:color/black"
+			                    android:text="dd/mm/yyyy" />
+			             <TextView 
+					          	android:id="@+id/edit_dob" 
+								android:layout_width="wrap_content"
+			                    android:layout_height="wrap_content"
+			                    android:text="@string/edit"
+			                    android:textSize="12sp"
+			                    android:layout_marginBottom="9dp"
+			                    android:layout_marginLeft="90dp"
+			                    android:textColor="@color/black"
+			                    />
+	                     <LinearLayout 
+			              android:id="@+id/linear1"
+			              android:layout_width="wrap_content"
+			              android:layout_height="wrap_content"
+						  android:orientation="horizontal"
+						  android:visibility="gone"
+						  >
+			        		  <ImageView
+			                    android:id="@+id/change_dob_btn"
+			                    android:layout_width="25dp"
+			                    android:layout_height="25dp"
+			                    android:layout_marginLeft="15dp"
+			                    android:src="@drawable/calendar_icon" />
+					          <ImageView
+					          	 android:id="@+id/edit_save" 
+								 android:layout_width="20dp"
+			                     android:layout_height="20dp"
+			                     android:layout_marginTop="2dp"
+			                     android:layout_marginLeft="15dp"
+			                     android:src="@drawable/save" />
+					          <ImageView
+					          	 android:id="@+id/edit_cancel" 
+								 android:layout_width="25dp"
+			                     android:layout_height="25dp"
+			                     android:layout_marginLeft="15dp"
+			                     android:src="@drawable/cancel" />
+	              		</LinearLayout>
+	          </LinearLayout>
+	         
+	             <ImageView
+		           android:layout_width="320dp"
+		           android:layout_height="5dp"
+		           android:layout_marginTop="5dp"
+		           android:src="@drawable/middle_row"
 		          />
-		       <Button 
-		          android:id="@+id/change_dob_button"
-		          android:layout_width="fill_parent"
-              	  android:layout_height="40dp"
-              	  android:layout_weight="1" 
-              	  android:text="Cancel"
-              	  android:textSize="12sp"
-              	  android:layout_marginRight="30dp"
-		          />
-              </LinearLayout>
-          </LinearLayout>
-         
-             <ImageView
-	           android:layout_width="320dp"
-	           android:layout_height="5dp"
-	           android:layout_marginTop="5dp"
-	           android:src="@drawable/middle_row"
-	          />
-          <TableRow
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="10dp"
-              >
-		      <TextView 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="Local Address : "
-                     android:textStyle="bold"
-                     android:textSize="13sp"
-                     android:layout_marginLeft="45dp"
-                     android:textColor="@color/black"
-                     />
-		      <TextView 
-		          	android:id="@+id/l_address" 
-					 android:layout_width="130dp"
-                     android:layout_height="wrap_content"
-                     android:text="Tower 61, Bhanwarkua, Indore."
-                     android:textSize="13sp"
-                     android:lines="3"
-                     android:layout_marginLeft="10dp"
-                     android:textColor="@color/black"
-                     />
-		      <TextView 
-		          	android:id="@+id/edit_local_add" 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="@string/edit"
-                     android:textSize="12sp"
-                     android:textColor="@color/black"
-                     />
-		      
-          </TableRow >
-             <ImageView 
-	           android:layout_width="320dp"
-	           android:layout_height="5dp"
-	           android:src="@drawable/middle_row"
-	          />
-          <TableRow
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="10dp"
-              >
-		      <TextView 
-					 android:layout_width="50dp"
-                     android:layout_height="wrap_content"
-                     android:text="Permanent Address : "
-                     android:textStyle="bold"
-                     android:textSize="13sp"
-                     android:lines="2"
-                     android:layout_marginLeft="10dp"
-                     android:textColor="@color/black"
-                     />
-		      <TextView
-		          	 android:id="@+id/p_address" 
-					 android:layout_width="130dp"
-                     android:layout_height="wrap_content"
-                     android:text="Tower 61, Bhanwarkua, Indore."
-                     android:textSize="13sp"
-                     android:lines="3"
-                     android:layout_marginLeft="10dp"
-                     android:textColor="@color/black"
-                     />
-		      <TextView 
-		          	android:id="@+id/edit_parmanent_add" 
-					 android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:text="@string/edit"
-                     android:textSize="12sp"
-                     android:textColor="@color/black"
-                     />
-          </TableRow >
-             <ImageView 
-	           android:layout_width="320dp"
-	           android:layout_height="5dp"
-	           android:src="@drawable/middle_row"
-	          />
-		 </TableLayout>    
-    	</LinearLayout>
+	            
+	                 <TextView 
+						 android:layout_width="wrap_content"
+	                     android:layout_height="wrap_content"
+	                     android:text="Address  "
+	                     android:textStyle="bold"
+	                     android:textSize="13sp"
+	                     android:layout_marginTop="2dp"
+	                     android:layout_marginLeft="130dp"
+	                     android:textColor="@color/black"
+	                     />
+	               <ImageView 
+			           android:layout_width="320dp"
+			           android:layout_height="5dp"
+			           android:layout_marginTop="2dp"
+			           android:src="@drawable/middle_row"/>
+		            
+	          	<TableRow
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:layout_marginTop="15dp" >
+			      <TextView 
+						 android:layout_width="wrap_content"
+	                     android:layout_height="wrap_content"
+	                     android:text="Local : "
+	                     android:textStyle="bold"
+	                     android:textSize="13sp"
+	                     android:layout_marginLeft="45dp"
+	                     android:textColor="@color/black"
+	                     />
+			      <TextView
+			          	android:id="@+id/l_address" 
+						 android:layout_width="175dp"
+	                     android:layout_height="wrap_content"
+	                     android:text="Tower 61, Bhanwarkua, Indore."
+	                     android:textSize="13sp"
+	                     android:lines="3"
+	                     android:layout_marginLeft="10dp"
+	                     android:textColor="@color/black"
+	                     />
+			      <TextView 
+			          	android:id="@+id/edit_local_add" 
+						 android:layout_width="fill_parent"
+	                     android:layout_height="wrap_content"
+	                     android:text="@string/edit"
+	                     android:textSize="12sp"
+	                     android:textColor="@color/black"
+	                     />
+			      <LinearLayout 
+			              android:id="@+id/linear1"
+			              android:layout_width="wrap_content"
+			              android:layout_height="wrap_content"
+						  android:orientation="horizontal"
+						  android:visibility="gone"
+						  >
+					          <ImageView
+					          	 android:id="@+id/edit_faddress_save" 
+								 android:layout_width="20dp"
+			                     android:layout_height="20dp"
+			                     android:layout_marginTop="2dp"
+			                     android:layout_marginLeft="15dp"
+			                     android:src="@drawable/save" />
+					          <ImageView
+					          	 android:id="@+id/edit_faddress_cancel" 
+								 android:layout_width="25dp"
+			                     android:layout_height="25dp"
+			                     android:layout_marginLeft="15dp"
+			                     android:src="@drawable/cancel" />
+	              		</LinearLayout>
+	          </TableRow >
+	          
+	          <TableRow
+	              android:layout_width="fill_parent"
+	              android:layout_height="wrap_content"
+	              android:layout_marginTop="10dp"
+	              >
+			      <TextView 
+						 android:layout_width="50dp"
+	                     android:layout_height="wrap_content"
+	                     android:text="Permanent : "
+	                     android:textStyle="bold"
+	                     android:textSize="13sp"
+	                     android:lines="2"
+	                     android:layout_marginLeft="15dp"
+	                     android:textColor="@color/black"
+	                     />
+			      <TextView
+			          	 android:id="@+id/p_address" 
+						 android:layout_width="175dp"
+	                     android:layout_height="wrap_content"
+	                     android:text="Tower 61, Bhanwarkua, Indore."
+	                     android:textSize="13sp"
+	                     android:lines="3"
+	                     android:layout_marginLeft="10dp"
+	                     android:textColor="@color/black"
+	                     />
+			      <TextView 
+			          	android:id="@+id/edit_parmanent_add" 
+						 android:layout_width="fill_parent"
+	                     android:layout_height="wrap_content"
+	                     android:text="@string/edit"
+	                     android:textSize="12sp"
+	                     android:textColor="@color/black"
+	                     />
+	          </TableRow>
+	          <ImageView
+		           android:layout_width="320dp"
+		           android:layout_height="5dp"
+		           android:src="@drawable/middle_row"
+		       />
+		</TableLayout>    
+	</LinearLayout>
 </LinearLayout>

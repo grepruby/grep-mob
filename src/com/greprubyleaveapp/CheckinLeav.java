@@ -15,7 +15,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.greprubyleaveapp.ApplyOrCheckin.CheckinDetail;
 import com.markupartist.android.widget.PullToRefreshListView;
 import com.markupartist.android.widget.PullToRefreshListView.OnRefreshListener;
 
@@ -58,18 +57,16 @@ public class CheckinLeav extends ListActivity
 	private static final String TOTAL_LEAVES="total_leaves";
 	private static final String STATUS="status";
 	
-	JSONArray leaves = null;
+	private JSONArray leaves = null;
 	
 	private String apiToken;
 	private String uName;
 	private String lvStatus;
 	
-	//private RefreshableListView mListView;
-
-	// Progress Dialog
+	
 	private ProgressDialog pDialog;
 	
-	BeanClass bc = new BeanClass();
+	private BeanClass bc = new BeanClass();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +82,8 @@ public class CheckinLeav extends ListActivity
 	            }
 	        });
 		
-		Bundle gb  = this.getIntent().getExtras();
-		apiToken = gb.getString("apiToken");
-		uName  = gb.getString("uName");
+		    uName = BeanClass.getUserName();
+			apiToken = BeanClass.getApiToken();
 		
 		
 		
@@ -107,14 +103,11 @@ public class CheckinLeav extends ListActivity
 		back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	
-            	Bundle pb = new Bundle();
-            	pb.putString("uName", uName);
-            	pb.putString("apiToken", apiToken);
             	
             	Intent i = new Intent(view.getContext(), ApplyOrCheckin.class); 
-            	i.putExtras(pb);
-	        	startActivity(i);
+            	startActivity(i);
 	        	finish();
+	        	overridePendingTransition( R.anim.slide_in_right, R.anim.slide_out_right );
 	        	
             }
            });
@@ -141,7 +134,9 @@ public class CheckinLeav extends ListActivity
 			pDialog.setMessage("Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
-			pDialog.show();
+		//	pDialog.show();
+			
+			
 			
 			// *****  create every time new list view when use pull to refresh  *****  //
 			
@@ -178,7 +173,7 @@ public class CheckinLeav extends ListActivity
 			try {
 				leaves = json.getJSONArray(LEAVES);
 				
-				pDialog.dismiss();
+				//pDialog.dismiss();
 				
 				int temp_length = leaves.length();
 				/*if(temp_length>6){

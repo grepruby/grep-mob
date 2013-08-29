@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Login extends Activity
 {
@@ -250,12 +251,16 @@ public class Login extends Activity
 					responseToken=1;
 					String apiToken = json.getString(TOKEN);
 					String uName = json.getString(NAME);
-					Bundle bundle = new Bundle();
+					/*Bundle bundle = new Bundle();
 					bundle.putString("apiToken", apiToken);
-					bundle.putString("uName", uName);
+					bundle.putString("uName", uName);*/
+					
+					BeanClass.setUserName(uName);
+					BeanClass.setApiToken(apiToken);
+					BeanClass.setEmail(userEmail);
+					
 					// successfully created product
 					Intent i = new Intent(getApplicationContext(), ApplyOrCheckin.class);
-					i.putExtras(bundle);
 					startActivity(i);
 					// closing this screen
 					finish();
@@ -314,12 +319,20 @@ public class Login extends Activity
 				if (success.equals("true")) {
 					apiToken = json.getString(TOKEN);
 					String uName = json.getString(NAME);
-					Bundle bundle = new Bundle();
+					
+					/*Bundle bundle = new Bundle();
 					bundle.putString("apiToken", apiToken);
-					bundle.putString("uName", uName);
+					bundle.putString("uName", uName);*/
+					
+					BeanClass.setUserName(uName);
+					BeanClass.setApiToken(apiToken);
+					BeanClass.setEmail(userEmail);
+					
+					// Toast.makeText(getApplicationContext(),bc.getUserName(), Toast.LENGTH_SHORT).show();
+				       
+					
 					// successfully created product
 					Intent i = new Intent(getApplicationContext(), ApplyOrCheckin.class);
-					i.putExtras(bundle);
 					startActivity(i);
 					// closing this screen
 					finish();
