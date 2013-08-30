@@ -6,8 +6,7 @@
     	<string name="forgot">Forgot Password?</string>
      	<string name="login">Log in</string>
      	<string name="pwd">Password</string>
-     	<string name="edit"><u>Edit</u></string>
-     	<string name="save"><u>Save</u></string>
+     	
      	
 
 </resources>

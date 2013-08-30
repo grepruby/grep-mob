@@ -67,34 +67,35 @@ public final class R {
         public static final int detail=0x7f020010;
         public static final int dilog_image=0x7f020011;
         public static final int dot=0x7f020012;
-        public static final int gr_image=0x7f020013;
-        public static final int gr_login_image=0x7f020014;
-        public static final int gr_logo=0x7f020015;
-        public static final int gradient_bg=0x7f020016;
-        public static final int gradient_bg_hover=0x7f020017;
-        public static final int green=0x7f020018;
-        public static final int ic_launcher=0x7f020019;
-        public static final int ic_pulltorefresh_arrow=0x7f02001a;
-        public static final int icon=0x7f02001b;
-        public static final int list_item_background=0x7f02001c;
-        public static final int list_selector=0x7f02001d;
-        public static final int log_out=0x7f02001e;
-        public static final int login_logo=0x7f02001f;
-        public static final int logo=0x7f020020;
-        public static final int logout=0x7f020021;
-        public static final int middle_row=0x7f020022;
-        public static final int not_approved=0x7f020023;
-        public static final int panding=0x7f020024;
-        public static final int password=0x7f020025;
-        public static final int password_logo=0x7f020026;
-        public static final int pull_to_refresh_header_background=0x7f020027;
-        public static final int red=0x7f020028;
-        public static final int refreshable_listview_arrow=0x7f020029;
-        public static final int save=0x7f02002a;
-        public static final int slide_up=0x7f02002b;
-        public static final int user=0x7f02002c;
-        public static final int vector_frame=0x7f02002d;
-        public static final int yellow=0x7f02002e;
+        public static final int edit=0x7f020013;
+        public static final int gr_image=0x7f020014;
+        public static final int gr_login_image=0x7f020015;
+        public static final int gr_logo=0x7f020016;
+        public static final int gradient_bg=0x7f020017;
+        public static final int gradient_bg_hover=0x7f020018;
+        public static final int green=0x7f020019;
+        public static final int ic_launcher=0x7f02001a;
+        public static final int ic_pulltorefresh_arrow=0x7f02001b;
+        public static final int icon=0x7f02001c;
+        public static final int list_item_background=0x7f02001d;
+        public static final int list_selector=0x7f02001e;
+        public static final int log_out=0x7f02001f;
+        public static final int login_logo=0x7f020020;
+        public static final int logo=0x7f020021;
+        public static final int logout=0x7f020022;
+        public static final int middle_row=0x7f020023;
+        public static final int not_approved=0x7f020024;
+        public static final int panding=0x7f020025;
+        public static final int password=0x7f020026;
+        public static final int password_logo=0x7f020027;
+        public static final int pull_to_refresh_header_background=0x7f020028;
+        public static final int red=0x7f020029;
+        public static final int refreshable_listview_arrow=0x7f02002a;
+        public static final int save=0x7f02002b;
+        public static final int slide_up=0x7f02002c;
+        public static final int user=0x7f02002d;
+        public static final int vector_frame=0x7f02002e;
+        public static final int yellow=0x7f02002f;
     }
     public static final class id {
         public static final int action_settings=0x7f0a0053;
@@ -104,8 +105,7 @@ public final class R {
         public static final int c_password=0x7f0a004f;
         public static final int calander=0x7f0a0013;
         public static final int cancel_leave=0x7f0a0024;
-        public static final int change_dob_btn=0x7f0a003a;
-        public static final int change_dob_text=0x7f0a0037;
+        public static final int change_dob_btn=0x7f0a0039;
         public static final int change_leave=0x7f0a0025;
         public static final int checkin=0x7f0a0014;
         public static final int current_date=0x7f0a0004;
@@ -113,13 +113,13 @@ public final class R {
         public static final int date_icon=0x7f0a001d;
         public static final int dialogButtonOK=0x7f0a0020;
         public static final int dob=0x7f0a0036;
-        public static final int edit_cancel=0x7f0a003c;
-        public static final int edit_dob=0x7f0a0038;
-        public static final int edit_faddress_cancel=0x7f0a0040;
-        public static final int edit_faddress_save=0x7f0a003f;
+        public static final int edit_address=0x7f0a0040;
+        public static final int edit_cancel=0x7f0a003b;
+        public static final int edit_dob=0x7f0a0037;
+        public static final int edit_laddress_cancel=0x7f0a0042;
+        public static final int edit_laddress_save=0x7f0a0041;
         public static final int edit_local_add=0x7f0a003e;
-        public static final int edit_parmanent_add=0x7f0a0042;
-        public static final int edit_save=0x7f0a003b;
+        public static final int edit_save=0x7f0a003a;
         public static final int email=0x7f0a002c;
         public static final int end_date_id=0x7f0a0027;
         public static final int f_half_day=0x7f0a000f;
@@ -135,7 +135,9 @@ public final class R {
         public static final int leave_from_txt=0x7f0a0007;
         public static final int leave_type=0x7f0a0029;
         public static final int leave_type_id=0x7f0a0022;
-        public static final int linear1=0x7f0a0039;
+        public static final int linear1=0x7f0a0038;
+        public static final int linear2=0x7f0a003c;
+        public static final int linear3=0x7f0a003f;
         public static final int linearLayout1=0x7f0a002b;
         public static final int log_in=0x7f0a0052;
         public static final int login=0x7f0a0030;
@@ -145,7 +147,6 @@ public final class R {
         public static final int new_user=0x7f0a0031;
         public static final int next=0x7f0a001a;
         public static final int no_of_days=0x7f0a0028;
-        public static final int p_address=0x7f0a0041;
         public static final int password=0x7f0a002e;
         public static final int phone=0x7f0a0035;
         public static final int previous=0x7f0a0018;
@@ -203,7 +204,6 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050005;
         public static final int app_name=0x7f050000;
-        public static final int edit=0x7f050009;
         public static final int forgot=0x7f050006;
         public static final int login=0x7f050007;
         public static final int pull_to_refresh_pull_label=0x7f050001;
@@ -211,7 +211,6 @@ public final class R {
         public static final int pull_to_refresh_release_label=0x7f050002;
         public static final int pull_to_refresh_tap_label=0x7f050004;
         public static final int pwd=0x7f050008;
-        public static final int save=0x7f05000a;
     }
     public static final class style {
         /** 
