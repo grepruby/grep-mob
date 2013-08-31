@@ -42,10 +42,8 @@ public class CheckinLeav extends ListActivity
 	
 	private JSONParser jsonParser = new JSONParser();
 	private ArrayList<HashMap<String, String>> contactList;
-	
 	private ImageView back;
 	private Button previous,more;
-
 	private static final String LEAVES = "leaves";
 	private static final String ID = "id";
 	private static final String NAME = "name";
@@ -56,14 +54,12 @@ public class CheckinLeav extends ListActivity
 	private static final String REASON = "reason";
 	private static final String TOTAL_LEAVES="total_leaves";
 	private static final String STATUS="status";
+	private static boolean first_time_enter = true; 
 	
 	private JSONArray leaves = null;
-	
 	private String apiToken;
 	private String uName;
 	private String lvStatus;
-	
-	
 	private ProgressDialog pDialog;
 	
 	private BeanClass bc = new BeanClass();
@@ -74,17 +70,17 @@ public class CheckinLeav extends ListActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.checkin);
 		
+		uName = BeanClass.getUserName();
+		apiToken = BeanClass.getApiToken();
+		
+		
 		 ((PullToRefreshListView) getListView()).setOnRefreshListener(new OnRefreshListener() {
 	            @Override
 	            public void onRefresh() {
 	                // Do work to refresh the list here.
 	                new CheckinDetail().execute();
 	            }
-	        });
-		
-		    uName = BeanClass.getUserName();
-			apiToken = BeanClass.getApiToken();
-		
+	      });
 		
 		
 		if(bc.getCheckinJsonValue().isEmpty()){
@@ -127,6 +123,7 @@ public class CheckinLeav extends ListActivity
 		/**
 		 * Before starting background thread Show Progress Dialog
 		 * */
+		
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -134,14 +131,14 @@ public class CheckinLeav extends ListActivity
 			pDialog.setMessage("Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
-		//	pDialog.show();
-			
-			
+			if(first_time_enter){
+			pDialog.show();
+			first_time_enter=false;
+			}
 			
 			// *****  create every time new list view when use pull to refresh  *****  //
 			
 			contactList = new ArrayList<HashMap<String, String>>();
-			
 			
 			
 		}
@@ -149,10 +146,9 @@ public class CheckinLeav extends ListActivity
 		/**
 		 * Creating product
 		 * */
+		
 		@SuppressWarnings("deprecation")
 		protected String doInBackground(String... args) {
-			
-			
 			
 
 			// Building Parameters
@@ -173,7 +169,7 @@ public class CheckinLeav extends ListActivity
 			try {
 				leaves = json.getJSONArray(LEAVES);
 				
-				//pDialog.dismiss();
+				pDialog.dismiss();
 				
 				int temp_length = leaves.length();
 				/*if(temp_length>6){
@@ -343,7 +339,6 @@ public class CheckinLeav extends ListActivity
 									String reason = ((TextView) view.findViewById(R.id.reason)).getText().toString();
 									String status = ((TextView) view.findViewById(R.id.status)).getText().toString();
 									
-									
 									// Starting new intent
 									Intent in = new Intent(getApplicationContext(), LeaveDetail.class);
 									in.putExtra(LEAVE_FROM, from);
@@ -423,16 +418,5 @@ public class CheckinLeav extends ListActivity
 						});
 			}
 		});
-
-	
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }

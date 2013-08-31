@@ -32,26 +32,23 @@
     	    	 android:layout_width="fill_parent"
                  android:layout_height="wrap_content" 
                  android:orientation="vertical"
-                 android:layout_marginTop="80dp">
-           <ListView
-		        android:id="@android:id/list"
+                 android:layout_marginTop="70dp">
+           <com.markupartist.android.widget.PullToRefreshListView
+		        android:id="@+id/android:list"
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        android:divider="@drawable/middle_row"
-		        android:layout_marginTop="20dp"/>
+		       
+		        />
     	    
     	  
     	</LinearLayout>		
-    			
- 							
 				<LinearLayout
                  android:layout_width="fill_parent"
                  android:layout_height="wrap_content" 
                  android:orientation="vertical"
                  android:layout_marginTop="10dp"
-                 android:layout_gravity="center_vertical"
-                 >
-    	   
+                 android:layout_gravity="center_vertical">
 				           <TextView
 			                     android:id="@+id/checkin"
 			                     android:layout_width="fill_parent"
@@ -61,9 +58,9 @@
 			                     android:layout_gravity="center_horizontal"
 			                     android:layout_marginLeft="140dp"
 			                     android:autoLink="web"
-			                     android:textColor="#49bbe9" />
-				      		
-			         		<Button android:text="Apply for Leave" 
+			                     android:textColor="#49bbe9"/>
+			         		<Button 
+			         		    android:text="Apply for Leave"
 				         		android:id="@+id/apply" 
 				         		style="@style/btnStyleBeige"
 				         		android:layout_marginLeft="10dp"

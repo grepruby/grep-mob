@@ -14,6 +14,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.greprubyleaveapp.CheckinLeav.CheckinDetail;
+import com.markupartist.android.widget.PullToRefreshListView;
+import com.markupartist.android.widget.PullToRefreshListView.OnRefreshListener;
+
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -50,7 +54,7 @@ public class ApplyOrCheckin extends ListActivity
 	private static final String TOTAL_LEAVES="total_leaves";
 	private static final String STATUS="status";
 	
-	private ArrayList<HashMap<String, String>> contactList = new ArrayList<HashMap<String, String>>();
+	private ArrayList<HashMap<String, String>> contactList;
 	private JSONParser jsonParser = new JSONParser();
 	private JSONArray leaves = null;
 	
@@ -139,6 +143,14 @@ public class ApplyOrCheckin extends ListActivity
             }
            });
 		
+		((PullToRefreshListView) getListView()).setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Do work to refresh the list here.
+                new CheckinDetail().execute();
+            }
+        });
+		
 		if(bc.getApplyorCheckinJsonValue().isEmpty()){
 			
 			new CheckinDetail().execute();
@@ -174,6 +186,11 @@ public class ApplyOrCheckin extends ListActivity
 				pDialog.setIndeterminate(false);
 				pDialog.setCancelable(false);
 				pDialog.show();
+				
+				// *****  create every time new list view when use pull to refresh  *****  //
+				
+				contactList = new ArrayList<HashMap<String, String>>();
+				
 			}
 				
 			/**
@@ -431,10 +448,12 @@ public class ApplyOrCheckin extends ListActivity
 					 * */
 					ListAdapter adapter = new SimpleAdapter(ApplyOrCheckin.this, bc.getApplyorCheckinJsonValue(),	R.layout.list_item, new String[] { LEAVE_FROM,
 						LEAVE_TO,TOTAL_LEAVES,LEAVE_TYPE,REASON,STATUS},new int[] { R.id.start_date_id,R.id.end_date_id, R.id.no_of_days,R.id.leave_type,R.id.reason,R.id.status });
+					
 					// updating listview
 					setListAdapter(adapter);
 					
-					
+					// get pull to referesh listview
+					((PullToRefreshListView) getListView()).onRefreshComplete();
 					
 					       // selecting single ListView item
 					
